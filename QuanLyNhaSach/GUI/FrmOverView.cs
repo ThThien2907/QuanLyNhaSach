@@ -14,9 +14,11 @@ namespace QuanLyNhaSach.GUI
 {
     public partial class FrmOverView : Form
     {
-        public FrmOverView()
+        public FrmOverView(string userName)
         {
             InitializeComponent();
+            lbUserName.Text = userName;
+            if (userName != "admin") themTaiKhoanToolStripMenuItem.Visible = false;
         }
 
         BLLSach BLLSach = new BLLSach();
@@ -55,14 +57,19 @@ namespace QuanLyNhaSach.GUI
                 this.lsvSach.Items[i].SubItems.Add(row["NAMXUATBAN"].ToString());
                 i++;
             }
-
-            taiKhoanToolStripMenuItem.Visible = false;
+            //asdj
 
         }
 
         private void khoSachToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form f = new FrmKhoSach();
+            f.ShowDialog();
+        }
+
+        private void đổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form f = new FrmDoiMatKhau(lbUserName.Text);
             f.ShowDialog();
         }
     }
