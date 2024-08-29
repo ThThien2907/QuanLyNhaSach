@@ -30,6 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.nud = new System.Windows.Forms.NumericUpDown();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -52,9 +54,7 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            this.nud = new System.Windows.Forms.NumericUpDown();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -95,6 +95,21 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1046, 210);
             this.panel1.TabIndex = 2;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(720, 120);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(300, 30);
+            this.dateTimePicker1.TabIndex = 4;
+            // 
+            // nud
+            // 
+            this.nud.Location = new System.Drawing.Point(720, 156);
+            this.nud.Name = "nud";
+            this.nud.Size = new System.Drawing.Size(300, 30);
+            this.nud.TabIndex = 3;
             // 
             // textBox4
             // 
@@ -278,13 +293,6 @@
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
             // 
-            // nud
-            // 
-            this.nud.Location = new System.Drawing.Point(720, 156);
-            this.nud.Name = "nud";
-            this.nud.Size = new System.Drawing.Size(300, 30);
-            this.nud.TabIndex = 3;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -295,15 +303,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(1046, 291);
             this.dataGridView1.TabIndex = 4;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(720, 120);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(300, 30);
-            this.dateTimePicker1.TabIndex = 4;
-            // 
-            // FrmBookWarehouse
+            // FrmKhoSach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -319,9 +319,10 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FrmBookWarehouse";
+            this.Name = "FrmKhoSach";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kho sách";
+            this.Load += new System.EventHandler(this.FrmKhoSach_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud)).EndInit();
