@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace QuanLyNhaSach
+namespace QuanLyNhaSach.GUI
 {
-    public partial class FrmHoaDon : Form
+    public partial class FrmKhoSach : Form
     {
-        public FrmHoaDon()
+        public FrmKhoSach()
         {
             InitializeComponent();
         }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace QuanLyNhaSach
+namespace QuanLyNhaSach.GUI
 {
     public partial class FrmOverView : Form
     {

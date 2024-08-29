@@ -1,4 +1,4 @@
-﻿namespace QuanLyNhaSach
+﻿namespace QuanLyNhaSach.GUI
 {
     partial class FrmBaoCao
     {

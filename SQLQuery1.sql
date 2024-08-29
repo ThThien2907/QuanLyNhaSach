@@ -81,8 +81,6 @@ GO
 --Thêm khóa ngoại
 alter table CHITIETHOADON add constraint FK_CHITIETHOADON_HOADON foreign key(MAHOADON) references HOADON(MAHOADON)
 alter table CHITIETHOADON add constraint FK_CHITIETHOADON_SACH foreign key(MASACH) references SACH(MASACH)
-alter table HOADON add constraint FK_CHITIETHOADON_SACH foreign key(MASACH) references SACH(MASACH)
-alter table KHO add constraint FK_KHO_SACH foreign key(MASACH) references SACH(MASACH)
 alter table SACH add constraint FK_SACH_LOAISACH foreign key(MALOAISACH) references LOAISACH(MALOAISACH)
 alter table SACH add constraint FK_SACH_TACGIA foreign key(MATG) references TACGIA(MATG)
 alter table SACH add constraint FK_SACH_NHAXUATBAN foreign key(MANXB) references NHAXUATBAN(MANXB)
