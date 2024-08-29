@@ -41,9 +41,10 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(255, 395);
+            this.btnThoat.Location = new System.Drawing.Point(832, 430);
+            this.btnThoat.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(280, 43);
+            this.btnThoat.Size = new System.Drawing.Size(199, 47);
             this.btnThoat.TabIndex = 15;
             this.btnThoat.Text = "Thoat";
             this.btnThoat.UseVisualStyleBackColor = true;
@@ -51,18 +52,20 @@
             // 
             // btnXoaNXB
             // 
-            this.btnXoaNXB.Location = new System.Drawing.Point(646, 349);
+            this.btnXoaNXB.Location = new System.Drawing.Point(284, 430);
+            this.btnXoaNXB.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnXoaNXB.Name = "btnXoaNXB";
-            this.btnXoaNXB.Size = new System.Drawing.Size(109, 28);
+            this.btnXoaNXB.Size = new System.Drawing.Size(199, 47);
             this.btnXoaNXB.TabIndex = 14;
             this.btnXoaNXB.Text = "XOA";
             this.btnXoaNXB.UseVisualStyleBackColor = true;
             // 
             // btnThemNXB
             // 
-            this.btnThemNXB.Location = new System.Drawing.Point(646, 291);
+            this.btnThemNXB.Location = new System.Drawing.Point(33, 430);
+            this.btnThemNXB.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnThemNXB.Name = "btnThemNXB";
-            this.btnThemNXB.Size = new System.Drawing.Size(109, 28);
+            this.btnThemNXB.Size = new System.Drawing.Size(199, 47);
             this.btnThemNXB.TabIndex = 13;
             this.btnThemNXB.Text = "THEM";
             this.btnThemNXB.UseVisualStyleBackColor = true;
@@ -70,33 +73,37 @@
             // cbNXB
             // 
             this.cbNXB.FormattingEnabled = true;
-            this.cbNXB.Location = new System.Drawing.Point(170, 354);
+            this.cbNXB.Location = new System.Drawing.Point(209, 374);
+            this.cbNXB.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.cbNXB.Name = "cbNXB";
-            this.cbNXB.Size = new System.Drawing.Size(444, 21);
+            this.cbNXB.Size = new System.Drawing.Size(510, 30);
             this.cbNXB.TabIndex = 12;
             // 
             // txbNXB
             // 
-            this.txbNXB.Location = new System.Drawing.Point(170, 299);
+            this.txbNXB.Location = new System.Drawing.Point(209, 332);
+            this.txbNXB.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.txbNXB.Name = "txbNXB";
-            this.txbNXB.Size = new System.Drawing.Size(444, 20);
+            this.txbNXB.Size = new System.Drawing.Size(510, 30);
             this.txbNXB.TabIndex = 11;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(44, 362);
+            this.label2.Location = new System.Drawing.Point(29, 377);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
+            this.label2.Size = new System.Drawing.Size(154, 22);
             this.label2.TabIndex = 10;
             this.label2.Text = "XOA NHA SACH";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(44, 306);
+            this.label1.Location = new System.Drawing.Point(29, 335);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 13);
+            this.label1.Size = new System.Drawing.Size(168, 22);
             this.label1.TabIndex = 9;
             this.label1.Text = "THEM NHA SACH";
             // 
@@ -105,9 +112,10 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 12);
+            this.listView1.Location = new System.Drawing.Point(15, 15);
+            this.listView1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(776, 249);
+            this.listView1.Size = new System.Drawing.Size(1041, 296);
             this.listView1.TabIndex = 8;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -119,9 +127,9 @@
             // 
             // fNhaSach
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1073, 508);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.btnXoaNXB);
             this.Controls.Add(this.btnThemNXB);
@@ -130,6 +138,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listView1);
+            this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "fNhaSach";
             this.Text = "fNhaSach";
             this.ResumeLayout(false);

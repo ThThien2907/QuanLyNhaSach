@@ -1,4 +1,6 @@
-﻿using System;
+﻿using QuanLyNhaSach.BLL;
+using QuanLyNhaSach.DLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,9 +19,16 @@ namespace QuanLyNhaSach.GUI
             InitializeComponent();
         }
 
+        BLLSach BLLSach = new BLLSach();
+
         private void FrmOverView_Load(object sender, EventArgs e)
         {
+            DataTable dt = new DataTable();
+            dt = BLLSach.GetDataSach();
+            dgvSach.DataSource = dt;
+
             taiKhoanToolStripMenuItem.Visible = false;
+
         }
 
         private void khoSachToolStripMenuItem_Click(object sender, EventArgs e)

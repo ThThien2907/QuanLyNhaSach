@@ -36,7 +36,6 @@
             this.theLoaiToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.hoaDonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thongKeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,8 +44,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.dgvSach = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSach)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -82,20 +83,20 @@
             // khoSachToolStripMenuItem
             // 
             this.khoSachToolStripMenuItem.Name = "khoSachToolStripMenuItem";
-            this.khoSachToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.khoSachToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
             this.khoSachToolStripMenuItem.Text = "Kho sách";
             this.khoSachToolStripMenuItem.Click += new System.EventHandler(this.khoSachToolStripMenuItem_Click);
             // 
             // tacGiaToolStripMenuItem1
             // 
             this.tacGiaToolStripMenuItem1.Name = "tacGiaToolStripMenuItem1";
-            this.tacGiaToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.tacGiaToolStripMenuItem1.Size = new System.Drawing.Size(151, 26);
             this.tacGiaToolStripMenuItem1.Text = "Tác giả";
             // 
             // theLoaiToolStripMenuItem1
             // 
             this.theLoaiToolStripMenuItem1.Name = "theLoaiToolStripMenuItem1";
-            this.theLoaiToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.theLoaiToolStripMenuItem1.Size = new System.Drawing.Size(151, 26);
             this.theLoaiToolStripMenuItem1.Text = "Thể loại";
             // 
             // hoaDonToolStripMenuItem
@@ -109,15 +110,6 @@
             this.thongKeToolStripMenuItem.Name = "thongKeToolStripMenuItem";
             this.thongKeToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
             this.thongKeToolStripMenuItem.Text = "Thống kê";
-            // 
-            // listView1
-            // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 79);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1111, 429);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // panel1
             // 
@@ -199,6 +191,16 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "Nguyễn Văn A";
             // 
+            // dgvSach
+            // 
+            this.dgvSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSach.Location = new System.Drawing.Point(12, 79);
+            this.dgvSach.Name = "dgvSach";
+            this.dgvSach.RowHeadersWidth = 51;
+            this.dgvSach.RowTemplate.Height = 24;
+            this.dgvSach.Size = new System.Drawing.Size(1111, 429);
+            this.dgvSach.TabIndex = 4;
+            // 
             // FrmOverView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
@@ -206,8 +208,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1135, 607);
+            this.Controls.Add(this.dgvSach);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.listView1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -223,6 +225,7 @@
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSach)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,7 +236,6 @@
         private System.Windows.Forms.ToolStripMenuItem taiKhoanToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hoaDonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thongKeToolStripMenuItem;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -246,5 +248,6 @@
         private System.Windows.Forms.ToolStripMenuItem khoSachToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tacGiaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem theLoaiToolStripMenuItem1;
+        private System.Windows.Forms.DataGridView dgvSach;
     }
 }
