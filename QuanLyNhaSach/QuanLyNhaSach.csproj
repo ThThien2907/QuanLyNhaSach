@@ -61,6 +61,12 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\FrmDangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FrmDangNhap.designer.cs">
+      <DependentUpon>FrmDangNhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\FrmBaoCao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,26 +99,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="_form\fNhaSach.cs">
+    <Compile Include="GUI\fNhaSach.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="_form\fNhaSach.Designer.cs">
+    <Compile Include="GUI\fNhaSach.Designer.cs">
       <DependentUpon>fNhaSach.cs</DependentUpon>
     </Compile>
-    <Compile Include="_form\fTacGia.cs">
+    <Compile Include="GUI\fTacGia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="_form\fTacGia.Designer.cs">
+    <Compile Include="GUI\fTacGia.Designer.cs">
       <DependentUpon>fTacGia.cs</DependentUpon>
     </Compile>
-    <Compile Include="_form\fTheLoai.cs">
+    <Compile Include="GUI\fTheLoai.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="_form\fTheLoai.Designer.cs">
+    <Compile Include="GUI\fTheLoai.Designer.cs">
       <DependentUpon>fTheLoai.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FrmDangNhap.resx">
+      <DependentUpon>FrmDangNhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FrmBaoCao.resx">
       <DependentUpon>FrmBaoCao.cs</DependentUpon>
@@ -138,13 +147,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="_form\fNhaSach.resx">
+    <EmbeddedResource Include="GUI\fNhaSach.resx">
       <DependentUpon>fNhaSach.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_form\fTacGia.resx">
+    <EmbeddedResource Include="GUI\fTacGia.resx">
       <DependentUpon>fTacGia.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_form\fTheLoai.resx">
+    <EmbeddedResource Include="GUI\fTheLoai.resx">
       <DependentUpon>fTheLoai.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

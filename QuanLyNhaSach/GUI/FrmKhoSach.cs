@@ -16,5 +16,10 @@ namespace QuanLyNhaSach.GUI
         {
             InitializeComponent();
         }
+
+        private void FrmKhoSach_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
