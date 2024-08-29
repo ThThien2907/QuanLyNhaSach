@@ -44,10 +44,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.dgvSach = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lsvSach = new System.Windows.Forms.ListView();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSach)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -191,15 +192,22 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "Nguyễn Văn A";
             // 
-            // dgvSach
+            // panel2
             // 
-            this.dgvSach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSach.Location = new System.Drawing.Point(12, 79);
-            this.dgvSach.Name = "dgvSach";
-            this.dgvSach.RowHeadersWidth = 51;
-            this.dgvSach.RowTemplate.Height = 24;
-            this.dgvSach.Size = new System.Drawing.Size(1111, 429);
-            this.dgvSach.TabIndex = 4;
+            this.panel2.Controls.Add(this.lsvSach);
+            this.panel2.Location = new System.Drawing.Point(12, 71);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1111, 437);
+            this.panel2.TabIndex = 4;
+            // 
+            // lsvSach
+            // 
+            this.lsvSach.HideSelection = false;
+            this.lsvSach.Location = new System.Drawing.Point(3, 3);
+            this.lsvSach.Name = "lsvSach";
+            this.lsvSach.Size = new System.Drawing.Size(1105, 431);
+            this.lsvSach.TabIndex = 0;
+            this.lsvSach.UseCompatibleStateImageBehavior = false;
             // 
             // FrmOverView
             // 
@@ -208,7 +216,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1135, 607);
-            this.Controls.Add(this.dgvSach);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label7);
@@ -225,7 +233,7 @@
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSach)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -248,6 +256,7 @@
         private System.Windows.Forms.ToolStripMenuItem khoSachToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tacGiaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem theLoaiToolStripMenuItem1;
-        private System.Windows.Forms.DataGridView dgvSach;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ListView lsvSach;
     }
 }

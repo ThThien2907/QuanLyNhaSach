@@ -48,7 +48,7 @@ create table SACH
 	GIANHAP int,
 	LANTAIBAN int,
 	MANXB char(7),
-	NAMXUATBAN datetime
+	NAMXUATBAN int
 )
 go
 
