@@ -52,7 +52,6 @@ namespace QuanLyNhaSach.GUI
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(678, 204);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnDangNhap
             // 
@@ -83,7 +82,6 @@ namespace QuanLyNhaSach.GUI
             this.txbMatKhau.Size = new System.Drawing.Size(450, 30);
             this.txbMatKhau.TabIndex = 2;
             this.txbMatKhau.UseSystemPasswordChar = true;
-            this.txbMatKhau.TextChanged += new System.EventHandler(this.txbMatKhau_TextChanged);
             // 
             // lblMatKhau
             // 
@@ -124,7 +122,6 @@ namespace QuanLyNhaSach.GUI
             this.lblTenDangNhap.Size = new System.Drawing.Size(173, 22);
             this.lblTenDangNhap.TabIndex = 0;
             this.lblTenDangNhap.Text = "TÊN ĐĂNG NHẬP:";
-            this.lblTenDangNhap.Click += new System.EventHandler(this.lblTenDangNhap_Click);
             // 
             // FrmDangNhap
             // 
@@ -138,7 +135,6 @@ namespace QuanLyNhaSach.GUI
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ĐĂNG NHẬP TÀI KHOẢN";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fDangNhap_FormClosing);
-            this.Load += new System.EventHandler(this.FrmDangNhap_Load);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();

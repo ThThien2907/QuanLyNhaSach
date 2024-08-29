@@ -46,10 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\BLLTacGia.cs" />
     <Compile Include="BLL\BLLTaiKhoan.cs" />
     <Compile Include="BLL\BLLSach.cs" />
     <Compile Include="DLL\DataAccessPlayer.cs" />
     <Compile Include="DTO\Sach.cs" />
+    <Compile Include="DTO\TacGia.cs" />
     <Compile Include="GUI\FrmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,23 +96,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GUI\fNhaSach.cs">
+    <Compile Include="GUI\FrmNhaXuatBan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\fNhaSach.Designer.cs">
-      <DependentUpon>fNhaSach.cs</DependentUpon>
+    <Compile Include="GUI\FrmNhaXuatBan.Designer.cs">
+      <DependentUpon>FrmNhaXuatBan.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\fTacGia.cs">
+    <Compile Include="GUI\FrmTacGia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\fTacGia.Designer.cs">
-      <DependentUpon>fTacGia.cs</DependentUpon>
+    <Compile Include="GUI\FrmTacGia.Designer.cs">
+      <DependentUpon>FrmTacGia.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\fTheLoai.cs">
+    <Compile Include="GUI\FrmTheLoai.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\fTheLoai.Designer.cs">
-      <DependentUpon>fTheLoai.cs</DependentUpon>
+    <Compile Include="GUI\FrmTheLoai.Designer.cs">
+      <DependentUpon>FrmTheLoai.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="GUI\FrmDangNhap.resx">
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
@@ -142,14 +144,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="GUI\fNhaSach.resx">
-      <DependentUpon>fNhaSach.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\FrmNhaXuatBan.resx">
+      <DependentUpon>FrmNhaXuatBan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\fTacGia.resx">
-      <DependentUpon>fTacGia.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\FrmTacGia.resx">
+      <DependentUpon>FrmTacGia.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\fTheLoai.resx">
-      <DependentUpon>fTheLoai.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\FrmTheLoai.resx">
+      <DependentUpon>FrmTheLoai.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

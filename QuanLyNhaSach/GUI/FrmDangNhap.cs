@@ -73,25 +73,5 @@ namespace QuanLyNhaSach.GUI
             //Khi ấn nút thoát thì sẽ thoát khỏi chương trình
             Application.Exit();
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void txbMatKhau_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblTenDangNhap_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FrmDangNhap_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace QuanLyNhaSach
 {
-    public partial class fTheLoai : Form
+    public partial class FrmTheLoai : Form
     {
-        public fTheLoai()
+        public FrmTheLoai()
         {
             InitializeComponent();
         }

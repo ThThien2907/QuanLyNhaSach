@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace QuanLyNhaSach
 {
-    public partial class fNhaSach : Form
+    public partial class FrmNhaXuatBan : Form
     {
-        public fNhaSach()
+        public FrmNhaXuatBan()
         {
             InitializeComponent();
         }
