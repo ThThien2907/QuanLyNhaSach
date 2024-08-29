@@ -72,5 +72,11 @@ namespace QuanLyNhaSach.GUI
             Form f = new FrmDoiMatKhau(lbUserName.Text);
             f.ShowDialog();
         }
+
+        private void thongKeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form f = new FrmThongKe();
+            f.ShowDialog();
+        }
     }
 }

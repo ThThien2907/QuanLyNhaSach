@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="BLL\BLLTaiKhoan.cs" />
     <Compile Include="BLL\BLLSach.cs" />
+    <Compile Include="BLL\BLLThongke.cs" />
     <Compile Include="DLL\DataAccessPlayer.cs" />
     <Compile Include="DTO\Sach.cs" />
     <Compile Include="GUI\FrmDangNhap.cs">
