@@ -49,18 +49,6 @@
     <Compile Include="BLL\BLLSach.cs" />
     <Compile Include="DLL\DataAccessPlayer.cs" />
     <Compile Include="DTO\Sach.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\FrmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,11 +61,11 @@
     <Compile Include="GUI\FrmBaoCao.Designer.cs">
       <DependentUpon>FrmBaoCao.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\FrmChiTietHoaDon.cs">
+    <Compile Include="GUI\FrmHoaDon.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\FrmChiTietHoaDon.Designer.cs">
-      <DependentUpon>FrmChiTietHoaDon.cs</DependentUpon>
+    <Compile Include="GUI\FrmHoaDon.Designer.cs">
+      <DependentUpon>FrmHoaDon.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\FrmKhoSach.cs">
       <SubType>Form</SubType>
@@ -117,17 +105,14 @@
     <Compile Include="GUI\fTheLoai.Designer.cs">
       <DependentUpon>fTheLoai.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\FrmDangNhap.resx">
       <DependentUpon>FrmDangNhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FrmBaoCao.resx">
       <DependentUpon>FrmBaoCao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FrmChiTietHoaDon.resx">
-      <DependentUpon>FrmChiTietHoaDon.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\FrmHoaDon.resx">
+      <DependentUpon>FrmHoaDon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FrmKhoSach.resx">
       <DependentUpon>FrmKhoSach.cs</DependentUpon>

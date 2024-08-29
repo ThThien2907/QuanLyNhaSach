@@ -47,11 +47,11 @@ namespace QuanLyNhaSach.GUI
                 this.lsvSach.Items.Add(row["MASACH"].ToString());
                 this.lsvSach.Items[i].SubItems.Add(row["TENSACH"].ToString());
                 this.lsvSach.Items[i].SubItems.Add(row["SOLUONG"].ToString());
-                this.lsvSach.Items[i].SubItems.Add(row["MATG"].ToString());
-                this.lsvSach.Items[i].SubItems.Add(row["MALOAISACH"].ToString());
+                this.lsvSach.Items[i].SubItems.Add(row["TENTG"].ToString());
+                this.lsvSach.Items[i].SubItems.Add(row["TENLOAISACH"].ToString());
                 this.lsvSach.Items[i].SubItems.Add(row["GIABAN"].ToString());
                 this.lsvSach.Items[i].SubItems.Add(row["LANTAIBAN"].ToString());
-                this.lsvSach.Items[i].SubItems.Add(row["MANXB"].ToString());
+                this.lsvSach.Items[i].SubItems.Add(row["TENNHAXUATBAN"].ToString());
                 this.lsvSach.Items[i].SubItems.Add(row["NAMXUATBAN"].ToString());
                 i++;
             }

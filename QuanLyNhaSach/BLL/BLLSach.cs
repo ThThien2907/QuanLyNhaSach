@@ -13,7 +13,12 @@ namespace QuanLyNhaSach.BLL
         DataAccessPlayer DLLCon = new DataAccessPlayer();
         public DataTable GetDataSach()
         {
-            string query = "select * from Sach";
+            //string query = "select * from Sach";
+            string query = "SELECT MASACH, SOLUONG, TENSACH, TENTG, TENLOAISACH, GIABAN, LANTAIBAN, TENNHAXUATBAN, NAMXUATBAN " +
+                "FROM SACH s " +
+                "LEFT JOIN TACGIA t ON s.MATG = t.MATG " +
+                "LEFT JOIN LOAISACH ls ON s.MALOAISACH = ls.MALOAISACH " +
+                "LEFT JOIN NHAXUATBAN nxb ON s.MANXB = nxb.MANXB";
             return DLLCon.GetTable(query);
         }
 

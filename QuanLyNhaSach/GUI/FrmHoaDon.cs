@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace QuanLyNhaSach.GUI
 {
-    public partial class FrmChiTietHoaDon : Form
+    public partial class FrmHoaDon : Form
     {
-        public FrmChiTietHoaDon()
+        public FrmHoaDon()
         {
             InitializeComponent();
+        }
+
+        private void FrmHoaDon_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
