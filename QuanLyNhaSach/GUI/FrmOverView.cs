@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace QuanLyNhaSach.GUI
 {
-    //
+    //sad
     public partial class FrmOverView : Form
     {
         public FrmOverView(string userName)
