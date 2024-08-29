@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.taiKhoanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.heThongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sachToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.khoSachToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tacGiaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,9 +43,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lbUserName = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lsvSach = new System.Windows.Forms.ListView();
+            this.themTaiKhoanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.đổiMậtKhẩuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -55,7 +58,7 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.taiKhoanToolStripMenuItem,
+            this.heThongToolStripMenuItem,
             this.sachToolStripMenuItem,
             this.hoaDonToolStripMenuItem,
             this.thongKeToolStripMenuItem});
@@ -65,11 +68,15 @@
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // taiKhoanToolStripMenuItem
+            // heThongToolStripMenuItem
             // 
-            this.taiKhoanToolStripMenuItem.Name = "taiKhoanToolStripMenuItem";
-            this.taiKhoanToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
-            this.taiKhoanToolStripMenuItem.Text = "Tài khoản";
+            this.heThongToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.themTaiKhoanToolStripMenuItem,
+            this.đổiMậtKhẩuToolStripMenuItem,
+            this.thoátToolStripMenuItem});
+            this.heThongToolStripMenuItem.Name = "heThongToolStripMenuItem";
+            this.heThongToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
+            this.heThongToolStripMenuItem.Text = "Hệ thống";
             // 
             // sachToolStripMenuItem
             // 
@@ -182,15 +189,15 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Người dùng : ";
             // 
-            // label7
+            // lbUserName
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(919, 40);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(123, 22);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Nguyễn Văn A";
+            this.lbUserName.AutoSize = true;
+            this.lbUserName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUserName.Location = new System.Drawing.Point(919, 40);
+            this.lbUserName.Name = "lbUserName";
+            this.lbUserName.Size = new System.Drawing.Size(123, 22);
+            this.lbUserName.TabIndex = 0;
+            this.lbUserName.Text = "Nguyễn Văn A";
             // 
             // panel2
             // 
@@ -209,6 +216,25 @@
             this.lsvSach.TabIndex = 0;
             this.lsvSach.UseCompatibleStateImageBehavior = false;
             // 
+            // themTaiKhoanToolStripMenuItem
+            // 
+            this.themTaiKhoanToolStripMenuItem.Name = "themTaiKhoanToolStripMenuItem";
+            this.themTaiKhoanToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.themTaiKhoanToolStripMenuItem.Text = "Thêm tài khoản";
+            // 
+            // đổiMậtKhẩuToolStripMenuItem
+            // 
+            this.đổiMậtKhẩuToolStripMenuItem.Name = "đổiMậtKhẩuToolStripMenuItem";
+            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.đổiMậtKhẩuToolStripMenuItem.Text = "Đổi mật khẩu";
+            this.đổiMậtKhẩuToolStripMenuItem.Click += new System.EventHandler(this.đổiMậtKhẩuToolStripMenuItem_Click);
+            // 
+            // thoátToolStripMenuItem
+            // 
+            this.thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
+            this.thoátToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.thoátToolStripMenuItem.Text = "Thoát";
+            // 
             // FrmOverView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
@@ -219,7 +245,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lbUserName);
             this.Controls.Add(this.label6);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStrip1;
@@ -241,7 +267,7 @@
 
         #endregion
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem taiKhoanToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem heThongToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hoaDonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thongKeToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
@@ -251,12 +277,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lbUserName;
         private System.Windows.Forms.ToolStripMenuItem sachToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem khoSachToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tacGiaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem theLoaiToolStripMenuItem1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ListView lsvSach;
+        private System.Windows.Forms.ToolStripMenuItem themTaiKhoanToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem đổiMậtKhẩuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thoátToolStripMenuItem;
     }
 }

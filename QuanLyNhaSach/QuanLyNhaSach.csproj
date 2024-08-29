@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\BLLTaiKhoan.cs" />
     <Compile Include="BLL\BLLSach.cs" />
     <Compile Include="DLL\DataAccessPlayer.cs" />
     <Compile Include="DTO\Sach.cs" />
@@ -78,6 +79,12 @@
     </Compile>
     <Compile Include="GUI\FrmChiTietHoaDon.Designer.cs">
       <DependentUpon>FrmChiTietHoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FrmDoiMatKhau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FrmDoiMatKhau.Designer.cs">
+      <DependentUpon>FrmDoiMatKhau.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\FrmKhoSach.cs">
       <SubType>Form</SubType>
@@ -128,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FrmChiTietHoaDon.resx">
       <DependentUpon>FrmChiTietHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FrmDoiMatKhau.resx">
+      <DependentUpon>FrmDoiMatKhau.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FrmKhoSach.resx">
       <DependentUpon>FrmKhoSach.cs</DependentUpon>

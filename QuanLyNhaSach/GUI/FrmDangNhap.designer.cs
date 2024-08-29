@@ -47,17 +47,19 @@ namespace QuanLyNhaSach.GUI
             this.panel1.Controls.Add(this.btnDangNhap);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(16, 14);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(519, 198);
+            this.panel1.Size = new System.Drawing.Size(678, 204);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnDangNhap
             // 
-            this.btnDangNhap.Location = new System.Drawing.Point(341, 162);
+            this.btnDangNhap.Location = new System.Drawing.Point(420, 140);
+            this.btnDangNhap.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDangNhap.Name = "btnDangNhap";
-            this.btnDangNhap.Size = new System.Drawing.Size(175, 29);
+            this.btnDangNhap.Size = new System.Drawing.Size(241, 49);
             this.btnDangNhap.TabIndex = 3;
             this.btnDangNhap.Text = "ĐĂNG NHẬP";
             this.btnDangNhap.UseVisualStyleBackColor = true;
@@ -67,16 +69,18 @@ namespace QuanLyNhaSach.GUI
             // 
             this.panel3.Controls.Add(this.txbMatKhau);
             this.panel3.Controls.Add(this.lblMatKhau);
-            this.panel3.Location = new System.Drawing.Point(3, 81);
+            this.panel3.Location = new System.Drawing.Point(4, 70);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(513, 75);
+            this.panel3.Size = new System.Drawing.Size(657, 55);
             this.panel3.TabIndex = 2;
             // 
             // txbMatKhau
             // 
-            this.txbMatKhau.Location = new System.Drawing.Point(182, 24);
+            this.txbMatKhau.Location = new System.Drawing.Point(185, 8);
+            this.txbMatKhau.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txbMatKhau.Name = "txbMatKhau";
-            this.txbMatKhau.Size = new System.Drawing.Size(328, 27);
+            this.txbMatKhau.Size = new System.Drawing.Size(450, 30);
             this.txbMatKhau.TabIndex = 2;
             this.txbMatKhau.UseSystemPasswordChar = true;
             this.txbMatKhau.TextChanged += new System.EventHandler(this.txbMatKhau_TextChanged);
@@ -84,10 +88,11 @@ namespace QuanLyNhaSach.GUI
             // lblMatKhau
             // 
             this.lblMatKhau.AutoSize = true;
-            this.lblMatKhau.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblMatKhau.Location = new System.Drawing.Point(3, 24);
+            this.lblMatKhau.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMatKhau.Location = new System.Drawing.Point(4, 11);
+            this.lblMatKhau.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMatKhau.Name = "lblMatKhau";
-            this.lblMatKhau.Size = new System.Drawing.Size(115, 28);
+            this.lblMatKhau.Size = new System.Drawing.Size(119, 22);
             this.lblMatKhau.TabIndex = 0;
             this.lblMatKhau.Text = "MẬT KHẨU:";
             // 
@@ -95,39 +100,45 @@ namespace QuanLyNhaSach.GUI
             // 
             this.panel2.Controls.Add(this.txbTenDangNhap);
             this.panel2.Controls.Add(this.lblTenDangNhap);
-            this.panel2.Location = new System.Drawing.Point(3, 0);
+            this.panel2.Location = new System.Drawing.Point(4, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(513, 75);
+            this.panel2.Size = new System.Drawing.Size(657, 64);
             this.panel2.TabIndex = 0;
             // 
             // txbTenDangNhap
             // 
-            this.txbTenDangNhap.Location = new System.Drawing.Point(182, 24);
+            this.txbTenDangNhap.Location = new System.Drawing.Point(185, 14);
+            this.txbTenDangNhap.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txbTenDangNhap.Name = "txbTenDangNhap";
-            this.txbTenDangNhap.Size = new System.Drawing.Size(328, 27);
+            this.txbTenDangNhap.Size = new System.Drawing.Size(450, 30);
             this.txbTenDangNhap.TabIndex = 1;
             // 
             // lblTenDangNhap
             // 
             this.lblTenDangNhap.AutoSize = true;
-            this.lblTenDangNhap.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTenDangNhap.Location = new System.Drawing.Point(3, 23);
+            this.lblTenDangNhap.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTenDangNhap.Location = new System.Drawing.Point(4, 17);
+            this.lblTenDangNhap.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTenDangNhap.Name = "lblTenDangNhap";
-            this.lblTenDangNhap.Size = new System.Drawing.Size(170, 28);
+            this.lblTenDangNhap.Size = new System.Drawing.Size(173, 22);
             this.lblTenDangNhap.TabIndex = 0;
             this.lblTenDangNhap.Text = "TÊN ĐĂNG NHẬP:";
             this.lblTenDangNhap.Click += new System.EventHandler(this.lblTenDangNhap_Click);
             // 
-            // frmDangNhap
+            // FrmDangNhap
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 220);
+            this.ClientSize = new System.Drawing.Size(704, 224);
             this.Controls.Add(this.panel1);
-            this.Name = "frmDangNhap";
+            this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Name = "FrmDangNhap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ĐĂNG NHẬP TÀI KHOẢN";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fDangNhap_FormClosing);
+            this.Load += new System.EventHandler(this.FrmDangNhap_Load);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();

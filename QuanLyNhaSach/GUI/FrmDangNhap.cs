@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLyNhaSach.BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +15,7 @@ namespace QuanLyNhaSach.GUI
         {
             InitializeComponent();
         }
-        
+        BLLTaiKhoan BLLTaiKhoan = new BLLTaiKhoan();
         int count = 1;
 
         private void bDangNhap_Click(object sender, EventArgs e)
@@ -26,7 +27,7 @@ namespace QuanLyNhaSach.GUI
             if (Login(username, password))
             {
                 //FrmOverView f = new FrmOverView(txbTenDangNhap.Text);
-                FrmOverView f = new FrmOverView();
+                FrmOverView f = new FrmOverView(username);
                 this.Hide(); 
                 f.ShowDialog();
                 this.Show();
@@ -53,7 +54,8 @@ namespace QuanLyNhaSach.GUI
 
         bool Login(string username, string password)
         {
-            return true;
+            if (BLLTaiKhoan.CheckUser(username, password)) return true;
+            return false;
             //return AccountDAO.Instance.Login(username, password);
         }
 
@@ -83,6 +85,11 @@ namespace QuanLyNhaSach.GUI
         }
 
         private void lblTenDangNhap_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FrmDangNhap_Load(object sender, EventArgs e)
         {
 
         }

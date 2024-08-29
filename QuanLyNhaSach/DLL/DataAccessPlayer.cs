@@ -17,7 +17,7 @@ namespace QuanLyNhaSach.DLL
 
         private void Connected()
         {
-            string strCon = @"Data Source=DESKTOP-INQH0L7\SQLEXPRESS;Initial Catalog=QLNS;Integrated Security=True;";
+            string strCon = "Data Source=LAPTOP-RAAMJ882\\SQLEXPRESS;Initial Catalog=QLNS;Integrated Security=True";
             try
             {
                 if (sqlConn == null)
