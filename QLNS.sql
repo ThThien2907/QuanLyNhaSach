@@ -65,7 +65,7 @@ create table TAIKHOAN
 	PASS_WORD varchar(100)
 )
 go
-INSERT INTO TAIKHOAN VALUES ('admin', 'admin');
+INSERT INTO TAIKHOAN (USERNAME, PASS_WORD) VALUES ('admin', 'admin');
 Select * from TAIKHOAN Where USERNAME = 'admin' and PASS_WORD = 'admin'
 
 CREATE PROC USP_Login
