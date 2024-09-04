@@ -17,10 +17,13 @@ namespace QuanLyNhaSach.GUI
         public FrmBaoCao()
         {
             InitializeComponent();
-            txb_TextChanged();
-            listView1_SelectedIndexChanged();
+            this.Load += FrmBaoCao_Load;
         }
-
+        private void FrmBaoCao_Load(object sender, EventArgs e)
+        {
+            listView1_SelectedIndexChanged();
+            txb_TextChanged();
+        }
         private void listView1_SelectedIndexChanged()
         {
             DataTable data = BLLBaoCao.GetDataBaoCao();
@@ -33,7 +36,7 @@ namespace QuanLyNhaSach.GUI
             this.listView1.Columns.Add("SỐ LƯỢNG BÁN RA", 250);
             this.listView1.Columns.Add("GIÁ NHẬP", 200);
             this.listView1.Columns.Add("GIÁ BÁN", 200);
-            this.listView1.GridLines = true;
+            this.listView1.GridLines = true;    
             this.listView1.FullRowSelect = true;
 
             int i = 0;
@@ -69,5 +72,6 @@ namespace QuanLyNhaSach.GUI
         {
             this.Close();
         }
+
     }
 }
