@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace QuanLyNhaSach
@@ -24,10 +25,6 @@ namespace QuanLyNhaSach
         bool add = false;
 
 
-        private void LoadData()
-        {
-            
-        }
 
         private void FrmTacGia_Load(object sender, EventArgs e)
         {
@@ -69,65 +66,97 @@ namespace QuanLyNhaSach
             btnDelete.Enabled = false;
             btnSave.Enabled = true;
 
+            txtMaTG.Enabled = true;
             txtMaTG.Clear();
             txtTenTG.Clear();
             txtMaTG.Focus();
+
+            lsvTG.Enabled = false;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            btnAdd.Enabled = false;
-            btnDelete.Enabled = false;
-            btnSave.Enabled = true;
-            txtMaTG.Enabled = false;
+            if (txtMaTG.Text != String.Empty)
+            {
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = false;
+                btnSave.Enabled = true;
+                txtMaTG.Enabled = false;
+                txtTenTG.Focus();
+                lsvTG.Enabled = false;
+            }
+            else
+                MessageBox.Show("Vui lòng chọn tác giả muốn sửa!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            TacGia tg = new TacGia(txtMaTG.Text, txtTenTG.Text);
-            if (BLLTacGia.DeleteTacGia(tg))
+            if (txtMaTG.Text != String.Empty)
             {
-                MessageBox.Show("Thành công !!", "Thông báo", MessageBoxButtons.OK);
-                FrmTacGia_Load(sender, e);
+                if (MessageBox.Show("Bạn chắc chắc muốn xóa tác giả mã " + txtMaTG.Text, "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    TacGia tg = new TacGia(txtMaTG.Text, txtTenTG.Text);
+                    if (BLLTacGia.DeleteTacGia(tg))
+                    {
+                        FrmTacGia_Load(sender, e);
+                        txtMaTG.Clear();
+                        txtTenTG.Clear();
+                    }
+
+                }
             }
             else
-                MessageBox.Show("Thất bại !!", "Thông báo", MessageBoxButtons.OK);
-            txtMaTG.Clear();
-            txtTenTG.Clear();
+                MessageBox.Show("Vui lòng chọn tác giả muốn xóa!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            bool check = false;
-            TacGia tg = new TacGia(txtMaTG.Text, txtTenTG.Text);
-            if (add)
+            if (txtMaTG.Text != String.Empty && txtTenTG.Text != String.Empty)
             {
-                check = BLLTacGia.AddTacGia(tg);
-            }
-            else
-            {
-                check = BLLTacGia.UpdateTacGia(tg);
-            } 
+                bool check = false;
+                TacGia tg = new TacGia(txtMaTG.Text, txtTenTG.Text);
+                if (add)
+                {
+                    bool checkMaTG = true;
+                    foreach (ListViewItem item in lsvTG.Items)
+                    {
+                        if (item.Text.Trim() == txtMaTG.Text.Trim())
+                        {
+                            MessageBox.Show("Mã tác giả đã bị trùng!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            checkMaTG = false;
+                            break;
+                        }
+                    }
+                    if (checkMaTG)
+                        check = BLLTacGia.AddTacGia(tg);
+                }
+                else
+                {
+                    check = BLLTacGia.UpdateTacGia(tg);
+                } 
 
-            if (check)
-            {
-                MessageBox.Show("Thành công !!", "Thông báo", MessageBoxButtons.OK);
-                FrmTacGia_Load(sender, e);
+                if (check)
+                {
+                    add = false;
+                    btnAdd.Enabled = true;
+                    btnUpdate.Enabled = true;
+                    btnDelete.Enabled = true;
+                    btnSave.Enabled = false;
+                    txtMaTG.Enabled = false;
+                    txtMaTG.Clear();
+                    txtTenTG.Clear();
+                    lsvTG.Enabled = true;
+                    FrmTacGia_Load(sender, e);
+                }
             }
-            else
-                MessageBox.Show("Thất bại !!", "Thông báo", MessageBoxButtons.OK);
-            btnAdd.Enabled = true;
-            btnUpdate.Enabled = true;
-            btnDelete.Enabled = true;
-            btnSave.Enabled = false;
-            txtMaTG.Enabled=true;
-            txtMaTG.Clear();
-            txtTenTG.Clear();
+            else 
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (MessageBox.Show("Bạn chắc chắc muốn thoát!!!", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                this.Close();
         }
     }
 }

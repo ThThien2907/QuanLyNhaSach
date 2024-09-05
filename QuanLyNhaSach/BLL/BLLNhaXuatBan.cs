@@ -10,19 +10,19 @@ using System.Windows.Forms;
 
 namespace QuanLyNhaSach.BLL
 {
-    internal class BLLTacGia
+    internal class BLLNhaXuatBan
     {
         DataAccessPlayer DLLCon = new DataAccessPlayer();
 
-        public DataTable GetDataTacGia()
+        public DataTable GetDataNhaXuatBan()
         {
-            string query = "select * from TACGIA";
+            string query = "select * from NHAXUATBAN";
             return DLLCon.GetTable(query);
         }
 
-        public bool AddTacGia(TacGia tg)
+        public bool AddNhaXuatBan(NhaXuatBan nxb)
         {
-            string query = $"insert into TACGIA values ('{tg.MATG}', '{tg.TENTG}')";
+            string query = $"insert into NHAXUATBAN values ('{nxb.MANXB}', '{nxb.TENNHAXUATBAN}')";
             if (DLLCon.RunQuery(query))
             {
                 MessageBox.Show("Thêm thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -32,9 +32,9 @@ namespace QuanLyNhaSach.BLL
                 return false;
         }
 
-        public bool UpdateTacGia(TacGia tg)
+        public bool UpdateNhaXuatBan(NhaXuatBan nxb)
         {
-            string query = $"update TACGIA set TENTG = '{tg.TENTG}' where MATG = '{tg.MATG}'";
+            string query = $"update NHAXUATBAN set TENNHAXUATBAN = '{nxb.TENNHAXUATBAN}' where MANXB = '{nxb.MANXB}'";
             if (DLLCon.RunQuery(query))
             {
                 MessageBox.Show("Cập nhật thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -44,9 +44,9 @@ namespace QuanLyNhaSach.BLL
                 return false;
         }
 
-        public bool DeleteTacGia(TacGia tg)
+        public bool DeleteNhaXuatBan(NhaXuatBan nxb)
         {
-            string query = $"delete from TACGIA where MATG = '{tg.MATG}'";
+            string query = $"delete from NHAXUATBAN where MANXB = '{nxb.MANXB}'";
             if (DLLCon.RunQuery(query))
             {
                 MessageBox.Show("Xóa thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
