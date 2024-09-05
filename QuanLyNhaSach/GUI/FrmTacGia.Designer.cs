@@ -106,6 +106,7 @@
             // 
             // txtMaTG
             // 
+            this.txtMaTG.Enabled = false;
             this.txtMaTG.Location = new System.Drawing.Point(187, 337);
             this.txtMaTG.Margin = new System.Windows.Forms.Padding(6);
             this.txtMaTG.Name = "txtMaTG";

@@ -46,7 +46,7 @@
             this.btnExit.Margin = new System.Windows.Forms.Padding(6);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(145, 47);
-            this.btnExit.TabIndex = 15;
+            this.btnExit.TabIndex = 6;
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnThoat_Click);
@@ -57,9 +57,10 @@
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(6);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(145, 47);
-            this.btnUpdate.TabIndex = 14;
+            this.btnUpdate.TabIndex = 3;
             this.btnUpdate.Text = "Sửa";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
             // 
@@ -67,17 +68,19 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(6);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(145, 47);
-            this.btnAdd.TabIndex = 13;
+            this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtMaNXB
             // 
+            this.txtMaNXB.Enabled = false;
             this.txtMaNXB.Location = new System.Drawing.Point(181, 332);
             this.txtMaNXB.Margin = new System.Windows.Forms.Padding(6);
             this.txtMaNXB.Name = "txtMaNXB";
             this.txtMaNXB.Size = new System.Drawing.Size(423, 30);
-            this.txtMaNXB.TabIndex = 11;
+            this.txtMaNXB.TabIndex = 0;
             // 
             // label1
             // 
@@ -99,6 +102,7 @@
             this.lsvNXB.TabIndex = 8;
             this.lsvNXB.UseCompatibleStateImageBehavior = false;
             this.lsvNXB.View = System.Windows.Forms.View.Details;
+            this.lsvNXB.SelectedIndexChanged += new System.EventHandler(this.lsvNXB_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -116,7 +120,7 @@
             this.txtTenNXB.Margin = new System.Windows.Forms.Padding(6);
             this.txtTenNXB.Name = "txtTenNXB";
             this.txtTenNXB.Size = new System.Drawing.Size(423, 30);
-            this.txtTenNXB.TabIndex = 11;
+            this.txtTenNXB.TabIndex = 1;
             // 
             // btnSave
             // 
@@ -124,10 +128,10 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(6);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(145, 47);
-            this.btnSave.TabIndex = 15;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnThoat_Click);
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnDelete
             // 
@@ -135,10 +139,10 @@
             this.btnDelete.Margin = new System.Windows.Forms.Padding(6);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(145, 47);
-            this.btnDelete.TabIndex = 15;
+            this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnThoat_Click);
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // FrmNhaXuatBan
             // 
@@ -161,6 +165,7 @@
             this.Name = "FrmNhaXuatBan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nhà Xuất Bản";
+            this.Load += new System.EventHandler(this.FrmNhaXuatBan_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

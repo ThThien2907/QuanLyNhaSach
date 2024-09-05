@@ -10,19 +10,19 @@ using System.Windows.Forms;
 
 namespace QuanLyNhaSach.BLL
 {
-    internal class BLLTacGia
+    internal class BLLLoaiSach
     {
         DataAccessPlayer DLLCon = new DataAccessPlayer();
 
-        public DataTable GetDataTacGia()
+        public DataTable GetDataLoaiSach()
         {
-            string query = "select * from TACGIA";
+            string query = "select * from LOAISACH";
             return DLLCon.GetTable(query);
         }
 
-        public bool AddTacGia(TacGia tg)
+        public bool AddLoaiSach(LoaiSach ls)
         {
-            string query = $"insert into TACGIA values ('{tg.MATG}', '{tg.TENTG}')";
+            string query = $"insert into LOAISACH values ('{ls.MALOAISACH}', '{ls.TENLOAISACH}')";
             if (DLLCon.RunQuery(query))
             {
                 MessageBox.Show("Thêm thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -32,9 +32,9 @@ namespace QuanLyNhaSach.BLL
                 return false;
         }
 
-        public bool UpdateTacGia(TacGia tg)
+        public bool UpdateLoaiSach(LoaiSach ls)
         {
-            string query = $"update TACGIA set TENTG = '{tg.TENTG}' where MATG = '{tg.MATG}'";
+            string query = $"update LOAISACH set TENLOAISACH = '{ls.TENLOAISACH}' where MALOAISACH = '{ls.MALOAISACH}'";
             if (DLLCon.RunQuery(query))
             {
                 MessageBox.Show("Cập nhật thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -44,9 +44,9 @@ namespace QuanLyNhaSach.BLL
                 return false;
         }
 
-        public bool DeleteTacGia(TacGia tg)
+        public bool DeleteLoaiSach(LoaiSach ls)
         {
-            string query = $"delete from TACGIA where MATG = '{tg.MATG}'";
+            string query = $"delete from LOAISACH where MALOAISACH = '{ls.MALOAISACH}'";
             if (DLLCon.RunQuery(query))
             {
                 MessageBox.Show("Xóa thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
