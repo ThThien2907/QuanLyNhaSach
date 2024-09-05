@@ -23,8 +23,8 @@ namespace QuanLyNhaSach
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string tungay = dateTimePicker1.Value.ToString("dd/MM/yyyy");
-            string denngay = dateTimePicker2.Value.ToString("dd/MM/yyyy");
+            string tungay = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+            string denngay = dateTimePicker2.Value.ToString("yyyy-MM-dd");
 
             DataTable data = BLLThongke.GetDataThongKe(tungay, denngay);
 

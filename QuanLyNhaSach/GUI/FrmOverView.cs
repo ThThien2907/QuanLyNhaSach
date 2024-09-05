@@ -22,9 +22,12 @@ namespace QuanLyNhaSach.GUI
         }
 
         BLLSach BLLSach = new BLLSach();
+        BLLThongke BLLThongke = new BLLThongke();
 
         private void FrmOverView_Load(object sender, EventArgs e)
         {
+
+            FrmViewTong_Load();
             DataTable dt = new DataTable();
             dt = BLLSach.GetDataSach();
 
@@ -61,6 +64,21 @@ namespace QuanLyNhaSach.GUI
 
         }
 
+
+        private void FrmViewTong_Load()
+        {
+            string timeNow = DateTime.Now.ToString("yyyy-MM-dd");
+            label5.Text = timeNow;
+
+            var doanhThu = BLLThongke.GetDoanhThu(timeNow);
+            var soLuongKhach = BLLThongke.GetSoLuongKhach(timeNow);
+
+
+            txbDoanhThu.Text = doanhThu.ToString() + " VND";
+            
+            txbSLKhach.Text = soLuongKhach.ToString() + " khách";
+            
+        }
         private void khoSachToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form f = new FrmKhoSach();
@@ -78,5 +96,40 @@ namespace QuanLyNhaSach.GUI
             Form f = new FrmThongKe();
             f.ShowDialog();
         }
+
+        private void themTaiKhoanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form f = new FrmThemTaiKhoan();
+            f.ShowDialog();
+        }
+
+        private void thoátToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void hoaDonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form f = new FrmHoaDon();
+            f.ShowDialog();
+        }
+
+        private void tacGiaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form f = new FrmTacGia();
+            f.ShowDialog();
+        }
+
+        private void theLoaiToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form f = new FrmTheLoai();
+            f.ShowDialog();
+        }
+
+        private void lsvSach_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

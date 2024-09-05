@@ -52,5 +52,10 @@ namespace QuanLyNhaSach.BLL
             string query = $"UPDATE TaiKhoan SET PASS_WORD = '{newPassword}' WHERE USERNAME = '{userName}'";
             return DLLCon.RunQuery(query);
         }
+        public bool ThemTaiKhoan(string userName, string password)
+        {
+            string query = $"insert into TAIKHOAN values ('{userName}','{password}')";
+            return DLLCon.RunQuery(query);
+        }
     }
 }
