@@ -18,7 +18,7 @@ namespace QuanLyNhaSach.GUI
         {
             InitializeComponent();
             lbUserName.Text = userName;
-            if (userName != "admin") themTaiKhoanToolStripMenuItem.Visible = false;
+            if (userName != "Admin") themTaiKhoanToolStripMenuItem.Visible = false;
         }
 
         BLLSach BLLSach = new BLLSach();
@@ -105,7 +105,8 @@ namespace QuanLyNhaSach.GUI
 
         private void thoátToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (MessageBox.Show("Bạn chắc chắc muốn thoát!!!", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                this.Close();
         }
 
         private void hoaDonToolStripMenuItem_Click(object sender, EventArgs e)
@@ -122,7 +123,7 @@ namespace QuanLyNhaSach.GUI
 
         private void theLoaiToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form f = new FrmTheLoai();
+            Form f = new FrmLoaiSach();
             f.ShowDialog();
         }
 
@@ -131,5 +132,10 @@ namespace QuanLyNhaSach.GUI
 
         }
 
+        private void nhàXuấtBảnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form f = new FrmNhaXuatBan();
+            f.ShowDialog();
+        }
     }
 }

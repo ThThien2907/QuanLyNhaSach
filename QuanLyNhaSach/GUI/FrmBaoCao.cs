@@ -70,7 +70,8 @@ namespace QuanLyNhaSach.GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (MessageBox.Show("Bạn chắc chắc muốn thoát!!!", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                this.Close();
         }
 
     }

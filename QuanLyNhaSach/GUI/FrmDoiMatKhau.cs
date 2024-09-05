@@ -28,8 +28,11 @@ namespace QuanLyNhaSach.GUI
                 {
                     if (!BLLTaiKhoan.DoiMatKhau(txtUserName.Text, txtNewPW.Text)) 
                         MessageBox.Show("Đổi mật khẩu không thành công !!", "Thông báo", MessageBoxButtons.OK);
-                    else 
+                    else
+                    {
                         MessageBox.Show("Đổi mật khẩu thành công !!", "Thông báo", MessageBoxButtons.OK);
+                        this.Close();
+                    }
                 }
                 else MessageBox.Show("Mật khẩu không trùng khớp !!", "Thông báo", MessageBoxButtons.OK);
             }
@@ -38,6 +41,12 @@ namespace QuanLyNhaSach.GUI
         private void FrmDoiMatKhau_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn chắc chắc muốn thoát!!!", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                this.Close();
         }
     }
 }

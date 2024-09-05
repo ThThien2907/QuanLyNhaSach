@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\BLLNhaXuatBan.cs" />
+    <Compile Include="BLL\BLLBaoCao.cs" />
     <Compile Include="BLL\BLLTacGia.cs" />
     <Compile Include="BLL\BLLTaiKhoan.cs" />
     <Compile Include="BLL\BLLSach.cs" />
