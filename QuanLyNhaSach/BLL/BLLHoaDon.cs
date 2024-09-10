@@ -40,19 +40,16 @@ namespace QuanLyNhaSach.BLL
             string query = "select * from HOADON";
             return DLLCon.GetTable(query);
         }
-
         public bool AddHoaDon(HoaDon hd)
         {
             string query = $"insert into HOADON values ('{hd.MAHOADON}', '{hd.TENKHACHHANG}', '{hd.NGAYLAP}', '{hd.TONGTIEN}')";
             return DLLCon.RunQuery(query);
         }
-
         public bool UpdateHoaDon(HoaDon hd)
         {
             string query = $"update HOADON set TENKHACHHANG = '{hd.TENKHACHHANG}', NGAYLAP = '{hd.NGAYLAP}', TONGTIEN = '{hd.TONGTIEN}' where MAHOADON = '{hd.MAHOADON}'";
             return DLLCon.RunQuery(query);
         }
-
         public bool DeleteHoaDon(string maHd)
         {
             string query = $"delete from HOADON where MAHOADON = '{maHd}'";

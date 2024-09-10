@@ -52,7 +52,6 @@ namespace QuanLyNhaSach.BLL
             string query = $"update CHITIETHOADON set SOLUONG = '{cthd.SOLUONG}', THANHTIEN = '{cthd.THANHTIEN}' where MAHOADON = '{cthd.MAHOADON}' AND MASACH = '{cthd.MASACH}'";
             return DLLCon.RunQuery(query);
         }
-
         public bool DeleteChiTietHoaDon(string maHD, string maSach)
         {
             string query = $"delete from CHITIETHOADON where MAHOADON = '{maHD}' AND MASACH = '{maSach}'";
