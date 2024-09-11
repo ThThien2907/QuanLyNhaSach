@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\BLLHoaDon.cs" />
+    <Compile Include="BLL\BLLChiTietHoaDon.cs" />
     <Compile Include="BLL\BLLNhaXuatBan.cs" />
     <Compile Include="BLL\BLLBaoCao.cs" />
     <Compile Include="BLL\BLLTacGia.cs" />
@@ -53,11 +55,13 @@
     <Compile Include="BLL\BLLSach.cs" />
     <Compile Include="BLL\BLLLoaiSach.cs" />
     <Compile Include="BLL\BLLThongke.cs" />
-    <Compile Include="DLL\DataAccessPlayer.cs" />
+    <Compile Include="DLL\DataAccessLayer.cs" />
     <Compile Include="DTO\Sach.cs" />
     <Compile Include="DTO\NhaXuatBan.cs" />
     <Compile Include="DTO\TacGia.cs" />
     <Compile Include="DTO\LoaiSach.cs" />
+    <Compile Include="DTO\HoaDon.cs" />
+    <Compile Include="DTO\ChiTietHoaDon.cs" />
     <Compile Include="GUI\FrmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>

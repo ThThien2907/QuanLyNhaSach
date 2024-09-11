@@ -11,7 +11,7 @@ namespace QuanLyNhaSach.BLL
 {
     public class BLLThongke
     {
-        DataAccessPlayer DLLCon = new DataAccessPlayer();
+        DataAccessLayer DLLCon = new DataAccessLayer();
         public DataTable GetDataThongKe(string tuNgay, string denNgay)
         {
             string query = $"select * from HOADON where NGAYLAP between '{tuNgay}' and '{denNgay}'";

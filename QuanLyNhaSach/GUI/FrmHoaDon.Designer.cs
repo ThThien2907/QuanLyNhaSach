@@ -33,6 +33,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lsvChiTietHoaDon = new System.Windows.Forms.ListView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnDeleteHD = new System.Windows.Forms.Button();
             this.dtpNgayLap = new System.Windows.Forms.DateTimePicker();
             this.txbTenKH = new System.Windows.Forms.TextBox();
             this.txbMaHD = new System.Windows.Forms.TextBox();
@@ -52,7 +53,6 @@
             this.btnSaveCTHD = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btnSaveHD = new System.Windows.Forms.Button();
-            this.btnDeleteHD = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -114,6 +114,16 @@
             this.panel2.Size = new System.Drawing.Size(672, 467);
             this.panel2.TabIndex = 2;
             // 
+            // btnDeleteHD
+            // 
+            this.btnDeleteHD.Location = new System.Drawing.Point(515, 15);
+            this.btnDeleteHD.Name = "btnDeleteHD";
+            this.btnDeleteHD.Size = new System.Drawing.Size(136, 45);
+            this.btnDeleteHD.TabIndex = 7;
+            this.btnDeleteHD.Text = "Xóa";
+            this.btnDeleteHD.UseVisualStyleBackColor = true;
+            this.btnDeleteHD.Click += new System.EventHandler(this.btnXoaHD_Click);
+            // 
             // dtpNgayLap
             // 
             this.dtpNgayLap.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -153,7 +163,7 @@
             this.btnCreateHD.TabIndex = 4;
             this.btnCreateHD.Text = "Lập hóa đơn mới";
             this.btnCreateHD.UseVisualStyleBackColor = true;
-            this.btnCreateHD.Click += new System.EventHandler(this.button7_Click);
+            this.btnCreateHD.Click += new System.EventHandler(this.btnCreateHD_Click);
             // 
             // label5
             // 
@@ -172,7 +182,7 @@
             this.btnCTHD.TabIndex = 4;
             this.btnCTHD.Text = "Chi tiết hóa đơn";
             this.btnCTHD.UseVisualStyleBackColor = true;
-            this.btnCTHD.Click += new System.EventHandler(this.button6_Click);
+            this.btnCTHD.Click += new System.EventHandler(this.btnCTHD_Click);
             // 
             // label4
             // 
@@ -210,7 +220,7 @@
             this.btnAddCTHD.TabIndex = 4;
             this.btnAddCTHD.Text = "Thêm";
             this.btnAddCTHD.UseVisualStyleBackColor = true;
-            this.btnAddCTHD.Click += new System.EventHandler(this.button1_Click);
+            this.btnAddCTHD.Click += new System.EventHandler(this.btnAddCTHD_Click);
             // 
             // label1
             // 
@@ -284,17 +294,7 @@
             this.btnSaveHD.TabIndex = 4;
             this.btnSaveHD.Text = "Hoàn thành hóa đơn";
             this.btnSaveHD.UseVisualStyleBackColor = true;
-            this.btnSaveHD.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // btnDeleteHD
-            // 
-            this.btnDeleteHD.Location = new System.Drawing.Point(515, 15);
-            this.btnDeleteHD.Name = "btnDeleteHD";
-            this.btnDeleteHD.Size = new System.Drawing.Size(136, 45);
-            this.btnDeleteHD.TabIndex = 7;
-            this.btnDeleteHD.Text = "Xóa";
-            this.btnDeleteHD.UseVisualStyleBackColor = true;
-            this.btnDeleteHD.Click += new System.EventHandler(this.btnXoaHD_Click);
+            this.btnSaveHD.Click += new System.EventHandler(this.btnSaveHD_Click);
             // 
             // FrmHoaDon
             // 

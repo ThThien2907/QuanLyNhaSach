@@ -12,7 +12,7 @@ namespace QuanLyNhaSach.BLL
 {
     internal class BLLNhaXuatBan
     {
-        DataAccessPlayer DLLCon = new DataAccessPlayer();
+        DataAccessLayer DLLCon = new DataAccessLayer();
 
         public DataTable GetDataNhaXuatBan()
         {

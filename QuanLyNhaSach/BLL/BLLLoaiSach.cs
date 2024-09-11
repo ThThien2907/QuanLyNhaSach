@@ -12,7 +12,7 @@ namespace QuanLyNhaSach.BLL
 {
     internal class BLLLoaiSach
     {
-        DataAccessPlayer DLLCon = new DataAccessPlayer();
+        DataAccessLayer DLLCon = new DataAccessLayer();
 
         public DataTable GetDataLoaiSach()
         {

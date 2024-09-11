@@ -12,7 +12,7 @@ namespace QuanLyNhaSach.BLL
 {
     public class BLLSach
     {
-        DataAccessPlayer DLLCon = new DataAccessPlayer();
+        DataAccessLayer DLLCon = new DataAccessLayer();
         public DataTable GetDataSach()
         {
             //string query = "select * from Sach";

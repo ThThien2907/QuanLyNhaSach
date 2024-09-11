@@ -11,7 +11,7 @@ namespace QuanLyNhaSach.BLL
 {
     internal class BLLChiTietHoaDon
     {
-        DataAccessPlayer DLLCon = new DataAccessPlayer();
+        DataAccessLayer DLLCon = new DataAccessLayer();
         public bool Check(string maHD)
         {
             string query = $"select count(*) from HOADON Where MAHOADON = '{maHD}'";

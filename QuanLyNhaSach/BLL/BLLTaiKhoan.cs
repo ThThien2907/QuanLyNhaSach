@@ -11,7 +11,7 @@ namespace QuanLyNhaSach.BLL
 {
     internal class BLLTaiKhoan
     {
-        DataAccessPlayer DLLCon = new DataAccessPlayer();
+        DataAccessLayer DLLCon = new DataAccessLayer();
         public DataTable GetDataTaiKhoan()
         {
             string query = "select * from TaiKhoan";

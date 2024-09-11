@@ -11,7 +11,7 @@ namespace QuanLyNhaSach.BLL
     public class BLLBaoCao
     {
 
-        DataAccessPlayer DLLCon = new DataAccessPlayer();
+        DataAccessLayer DLLCon = new DataAccessLayer();
         public DataTable GetDataBaoCao()
         {
             string query = "SELECT CHITIETHOADON.MASACH, SACH.TENSACH, SUM(CHITIETHOADON.SOLUONG) AS [SỐ LƯỢNG BÁN RA],  SACH.GIANHAP, SACH.GIABAN \r\nFROM CHITIETHOADON JOIN SACH ON CHITIETHOADON.MASACH = SACH.MASACH \r\nGROUP BY CHITIETHOADON.MASACH, SACH.TENSACH, SACH.GIANHAP, SACH.GIABAN\r\n";

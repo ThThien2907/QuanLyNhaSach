@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace QuanLyNhaSach.DLL
 {
-    public class DataAccessPlayer
+    public class DataAccessLayer
     {
         private SqlDataAdapter da;
         private SqlConnection sqlConn;
@@ -18,8 +18,8 @@ namespace QuanLyNhaSach.DLL
         private void Connected()
         {
             //string strCon = @"Data Source=LAPTOP-RAAMJ882\\SQLEXPRESS;Initial Catalog=QLNS;Integrated Security=True"; 
-            //string strCon = @"Data Source=DESKTOP-INQH0L7\SQLEXPRESS;Initial Catalog=QLNS;Integrated Security=True"; //thien
-            string strCon = @"Data Source=TANTHANH;Initial Catalog=QLNS;Integrated Security=True"; //thien
+            string strCon = @"Data Source=DESKTOP-INQH0L7\SQLEXPRESS;Initial Catalog=QLNS;Integrated Security=True"; //thien
+            //string strCon = @"Data Source=TANTHANH;Initial Catalog=QLNS;Integrated Security=True"; //thien
 
             try
             {
