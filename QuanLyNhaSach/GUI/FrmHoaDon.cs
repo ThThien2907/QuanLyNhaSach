@@ -22,7 +22,8 @@ namespace QuanLyNhaSach.GUI
         {
             InitializeComponent();
         }
-
+        private bool isUpdate = false;
+        private bool isAdd = false;
         private void FrmHoaDon_Load(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
@@ -153,9 +154,46 @@ namespace QuanLyNhaSach.GUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            btnAddCTHD.Enabled = true;
+            btnDeleteCTHD.Enabled = true;
+            btnUpdateCTHD.Enabled = true;
             btnCreateHD.Enabled = true;
             btnDeleteHD.Enabled = true;
-            EditChiTietHoaDonData(txbMaHD.Text);
+            if (isAdd)
+            {
+                if (nbudSoLuong.Value <= 0)
+                {
+                    MessageBox.Show("Vui lòng điền số lượng !!!");
+                    return;
+                }
+                ListViewItem itemSach = lsvSach.SelectedItems[0];
+                ListViewItem itemChiTietHD = new ListViewItem();
+                string maSach = itemSach.SubItems[0].Text;
+                itemChiTietHD.Text = txbMaHD.Text;
+                itemChiTietHD.SubItems.Add(itemSach.Text);
+                itemChiTietHD.SubItems.Add(nbudSoLuong.Value.ToString());
+                itemChiTietHD.SubItems.Add(itemSach.SubItems[2]);
+                itemChiTietHD.SubItems.Add((nbudSoLuong.Value * int.Parse(itemSach.SubItems[2].Text.ToString())).ToString());
+                foreach (ListViewItem item in lsvChiTietHoaDon.Items)
+                {
+                    if (item.SubItems[1].Text == maSach)
+                    {
+                        int newsoLuong = int.Parse(item.SubItems[2].Text) + int.Parse(nbudSoLuong.Value.ToString());
+                        item.SubItems[2].Text = newsoLuong.ToString();
+                        item.SubItems[4].Text = ((newsoLuong * int.Parse(itemSach.SubItems[2].Text.ToString())).ToString());
+                        return;
+                    }
+                }
+                lsvChiTietHoaDon.Items.Add(itemChiTietHD);
+            }
+            else if (isUpdate)
+            {
+                if (lsvChiTietHoaDon.SelectedItems.Count <= 0) return;
+                int newsoLuong = int.Parse(nbudSoLuong.Value.ToString());
+                lsvChiTietHoaDon.SelectedItems[0].SubItems[2].Text = newsoLuong.ToString();
+                lsvChiTietHoaDon.SelectedItems[0].SubItems[4].Text = ((newsoLuong * int.Parse(lsvChiTietHoaDon.SelectedItems[0].SubItems[3].Text.ToString())).ToString());
+            }
+            /*EditChiTietHoaDonData(txbMaHD.Text);
             IsActiveCTHDPanel(false);
             ActiveSachPanel(false);
             lsvChiTietHoaDon.Enabled = false;
@@ -170,7 +208,7 @@ namespace QuanLyNhaSach.GUI
             }
             newHD.TONGTIEN = S;
             BLLHoaDon.UpdateHoaDon(newHD);
-            FrmHoaDon_Load(sender, e);
+            FrmHoaDon_Load(sender, e);*/
         }
         private void ActiveSachPanel(bool trueFalse)
         {
@@ -230,20 +268,17 @@ namespace QuanLyNhaSach.GUI
 
         private void btnUpdateCTHD_Click(object sender, EventArgs e)
         {
+            isAdd = false;
+            isUpdate = true;
+            btnSaveCTHD.Enabled = true;
+            btnAddCTHD.Enabled = false;
+            btnDeleteCTHD.Enabled = false;
             if (lsvChiTietHoaDon.SelectedItems.Count <= 0) return;
             ListViewItem cthdItem = lsvChiTietHoaDon.SelectedItems[0];
-            ListViewItem selectItemSach = new ListViewItem();
-            foreach (ListViewItem item in lsvSach.Items)
-            {
-                if (item.SubItems[0].Text == cthdItem.SubItems[1].Text)
-                {
-                    selectItemSach = item;
-                    nbudSoLuong.Value = int.Parse(cthdItem.SubItems[2].Text);
-                }
-            }
-            lsvChiTietHoaDon.SelectedItems[0].Selected = false;
-            lsvChiTietHoaDon.Items.Remove(cthdItem);
-            selectItemSach.Selected = true;
+            nbudSoLuong.Value = int.Parse(cthdItem.SubItems[2].Text);
+            nbudSoLuong.Enabled = true;
+
+            
         }
 
         private void btnCreateHD_Click(object sender, EventArgs e)
@@ -273,8 +308,11 @@ namespace QuanLyNhaSach.GUI
             dtpNgayLap.Enabled = true;
             btnCreateHD.Enabled = false;
             btnDeleteHD.Enabled = false;
+            btnSaveHD.Enabled = true;
             lsvChiTietHoaDon.Enabled = true;
             lsvSach.Enabled = true;
+            lsvHoaDon.Enabled = false;
+            lsvSach.Enabled = false;
             IsActiveCTHDPanel(true);
 
             LoadDataChiTietHoaDon(BLLChiTietHoaDon.GetDataChiTietHoaDon(txbMaHD.Text));
@@ -282,7 +320,15 @@ namespace QuanLyNhaSach.GUI
 
         private void btnAddCTHD_Click(object sender, EventArgs e)
         {
-            if (nbudSoLuong.Value <= 0)
+            isAdd = true;
+            isUpdate = false;
+            btnUpdateCTHD.Enabled = false;
+            btnDeleteCTHD.Enabled = false;
+            btnSaveCTHD.Enabled = true;
+            lsvSach.Enabled = true;
+            nbudSoLuong.Enabled = true;
+
+            /*if (nbudSoLuong.Value <= 0)
             {
                 MessageBox.Show("Vui lòng điền số lượng !!!");
                 return;
@@ -292,59 +338,73 @@ namespace QuanLyNhaSach.GUI
             string maSach = itemSach.SubItems[0].Text;
             itemChiTietHD.Text = txbMaHD.Text;
             itemChiTietHD.SubItems.Add(itemSach.Text);
-            //itemChiTietHD.SubItems.Add(itemSach.SubItems[1]);
             itemChiTietHD.SubItems.Add(nbudSoLuong.Value.ToString());
             itemChiTietHD.SubItems.Add(itemSach.SubItems[2]);
             itemChiTietHD.SubItems.Add((nbudSoLuong.Value * int.Parse(itemSach.SubItems[2].Text.ToString())).ToString());
-            try
+            foreach (ListViewItem item in lsvChiTietHoaDon.Items)
             {
-                foreach (ListViewItem item in lsvChiTietHoaDon.Items)
+                if (item.SubItems[1].Text == maSach)
                 {
-                    if (item.SubItems[1].Text == maSach)
-                    {
-                        int newsoLuong = int.Parse(item.SubItems[2].Text) + int.Parse(nbudSoLuong.Value.ToString());
-                        item.SubItems[2].Text = newsoLuong.ToString();
-                        item.SubItems[4].Text = ((newsoLuong * int.Parse(itemSach.SubItems[2].Text.ToString())).ToString());
-                        return;
-                    }
+                    int newsoLuong = int.Parse(item.SubItems[2].Text) + int.Parse(nbudSoLuong.Value.ToString());
+                    item.SubItems[2].Text = newsoLuong.ToString();
+                    item.SubItems[4].Text = ((newsoLuong * int.Parse(itemSach.SubItems[2].Text.ToString())).ToString());
+                    return;
                 }
-                lsvChiTietHoaDon.Items.Add(itemChiTietHD);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            lsvChiTietHoaDon.Items.Add(itemChiTietHD);*/
         }
 
         private void btnSaveHD_Click(object sender, EventArgs e)
         {
-            if (txbMaHD.Text != string.Empty && txbTenKH.Text != string.Empty)
+            if (txbMaHD.Enabled == true)
             {
-                if (!BLLHoaDon.Check(txbMaHD.Text))
+                if (txbMaHD.Text != string.Empty && txbTenKH.Text != string.Empty)
                 {
-                    btnSaveCTHD.Enabled = false;
-                    txbMaHD.Enabled = false;
-                    txbTenKH.Enabled = false;
-                    dtpNgayLap.Enabled = false;
-                    HoaDon newHD = new HoaDon();
-                    newHD.MAHOADON = txbMaHD.Text;
-                    newHD.TENKHACHHANG = txbTenKH.Text;
-                    newHD.NGAYLAP = dtpNgayLap.Text;
-                    int S = 0;
-                    foreach (ListViewItem item in lsvChiTietHoaDon.Items)
+                    if (!BLLHoaDon.Check(txbMaHD.Text))
                     {
-                        S += int.Parse(item.SubItems[4].Text);
-                    }
-                    newHD.TONGTIEN = S;
-                    BLLHoaDon.AddHoaDon(newHD);
+                        btnSaveCTHD.Enabled = false;
+                        txbMaHD.Enabled = false;
+                        txbTenKH.Enabled = false;
+                        dtpNgayLap.Enabled = false;
+                        HoaDon newHD = new HoaDon();
+                        newHD.MAHOADON = txbMaHD.Text;
+                        newHD.TENKHACHHANG = txbTenKH.Text;
+                        newHD.NGAYLAP = dtpNgayLap.Text;
+                        int S = 0;
+                        foreach (ListViewItem item in lsvChiTietHoaDon.Items)
+                        {
+                            S += int.Parse(item.SubItems[4].Text);
+                        }
+                        newHD.TONGTIEN = S;
+                        BLLHoaDon.AddHoaDon(newHD);
 
-                    AddCTHD();
-                    //EditChiTietHoaDonData(txbMaHD.Text);
-                    FrmHoaDon_Load(sender, e);
+                        AddCTHD();
+                        //EditChiTietHoaDonData(txbMaHD.Text);
+                        FrmHoaDon_Load(sender, e);
+                    }
+                    else MessageBox.Show("Mã hóa đơn đã tồn tại !!!");
                 }
-                else MessageBox.Show("Mã hóa đơn đã tồn tại !!!");
+                else MessageBox.Show("Vui lòng điền đầy đủ thông tin !!!");
             }
-            else MessageBox.Show("Vui lòng điền đầy đủ thông tin !!!");
+            else
+            {
+                EditChiTietHoaDonData(txbMaHD.Text);
+                IsActiveCTHDPanel(false);
+                ActiveSachPanel(false);
+                lsvChiTietHoaDon.Enabled = false;
+                HoaDon newHD = new HoaDon();
+                newHD.MAHOADON = txbMaHD.Text;
+                newHD.TENKHACHHANG = txbTenKH.Text;
+                newHD.NGAYLAP = dtpNgayLap.Text;
+                int S = 0;
+                foreach (ListViewItem item in lsvChiTietHoaDon.Items)
+                {
+                    S += int.Parse(item.SubItems[4].Text);
+                }
+                newHD.TONGTIEN = S;
+                BLLHoaDon.UpdateHoaDon(newHD);
+                FrmHoaDon_Load(sender, e);
+            }
         }
     }
 }
