@@ -7,13 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace QuanLyNhaSach.DLL
+namespace QuanLyNhaSach.DAL
 {
     public class DataAccessLayer
     {
         private SqlDataAdapter da;
         private SqlConnection sqlConn;
         private DataTable dt;
+        private DataSet ds;
 
         private void Connected()
         {
@@ -50,6 +51,23 @@ namespace QuanLyNhaSach.DLL
                 sqlConn.Close();
             }
             return dt;
+        }
+
+        public DataSet GetDataSet(string query)
+        {
+            Connected();
+            if (sqlConn.State == ConnectionState.Closed)
+            {
+                sqlConn.Open();
+            }
+            da = new SqlDataAdapter(query, sqlConn);
+            ds = new DataSet();
+            da.Fill(ds);
+            if (sqlConn.State == ConnectionState.Open)
+            {
+                sqlConn.Close();
+            }
+            return ds;
         }
 
         public bool RunQuery(string query)

@@ -1,4 +1,4 @@
-﻿using QuanLyNhaSach.DLL;
+﻿using QuanLyNhaSach.DAL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,18 +11,18 @@ namespace QuanLyNhaSach.BLL
 {
     internal class BLLTaiKhoan
     {
-        DataAccessLayer DLLCon = new DataAccessLayer();
+        DataAccessLayer DAL = new DataAccessLayer();
         public DataTable GetDataTaiKhoan()
         {
             string query = "select * from TaiKhoan";
-            return DLLCon.GetTable(query);
+            return DAL.GetTable(query);
         }
         public bool CheckUser(string userName, string password)
         {
             try
             {
                 string query = $"select count(*) from TaiKhoan where USERNAME = '{userName}' AND PASS_WORD = '{password}'";
-                DataTable taiKhoan = DLLCon.GetTable(query);
+                DataTable taiKhoan = DAL.GetTable(query);
                 if (taiKhoan.Rows.Count > 0)
                 {
                     int count = (int)taiKhoan.Rows[0][0];
@@ -50,12 +50,12 @@ namespace QuanLyNhaSach.BLL
         public bool DoiMatKhau(string userName, string newPassword)
         {
             string query = $"UPDATE TaiKhoan SET PASS_WORD = '{newPassword}' WHERE USERNAME = '{userName}'";
-            return DLLCon.RunQuery(query);
+            return DAL.RunQuery(query);
         }
         public bool ThemTaiKhoan(string userName, string password)
         {
             string query = $"insert into TAIKHOAN values ('{userName}','{password}')";
-            return DLLCon.RunQuery(query);
+            return DAL.RunQuery(query);
         }
     }
 }

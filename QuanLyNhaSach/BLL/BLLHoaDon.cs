@@ -1,4 +1,4 @@
-﻿using QuanLyNhaSach.DLL;
+﻿using QuanLyNhaSach.DAL;
 using QuanLyNhaSach.DTO;
 using System;
 using System.Collections.Generic;
@@ -11,12 +11,12 @@ namespace QuanLyNhaSach.BLL
 {
     internal class BLLHoaDon
     {
-        DataAccessLayer DLLCon = new DataAccessLayer();
+        DataAccessLayer DAL = new DataAccessLayer();
         public bool Check(string maHD)
         {
             string query = $"select count(*) from HOADON Where MAHOADON = '{maHD}'";
             DataTable dt = new DataTable();
-            dt = DLLCon.GetTable(query);
+            dt = DAL.GetTable(query);
             if (dt.Rows.Count > 0)
             {
                 int count = (int)dt.Rows[0][0];
@@ -38,22 +38,22 @@ namespace QuanLyNhaSach.BLL
         public DataTable GetDataHoaDon()
         {
             string query = "select * from HOADON";
-            return DLLCon.GetTable(query);
+            return DAL.GetTable(query);
         }
         public bool AddHoaDon(HoaDon hd)
         {
             string query = $"insert into HOADON values ('{hd.MAHOADON}', '{hd.TENKHACHHANG}', '{hd.NGAYLAP}', '{hd.TONGTIEN}')";
-            return DLLCon.RunQuery(query);
+            return DAL.RunQuery(query);
         }
         public bool UpdateHoaDon(HoaDon hd)
         {
             string query = $"update HOADON set TENKHACHHANG = '{hd.TENKHACHHANG}', NGAYLAP = '{hd.NGAYLAP}', TONGTIEN = '{hd.TONGTIEN}' where MAHOADON = '{hd.MAHOADON}'";
-            return DLLCon.RunQuery(query);
+            return DAL.RunQuery(query);
         }
         public bool DeleteHoaDon(string maHd)
         {
             string query = $"delete from HOADON where MAHOADON = '{maHd}'";
-            return DLLCon.RunQuery(query);
+            return DAL.RunQuery(query);
         }
     }
 }

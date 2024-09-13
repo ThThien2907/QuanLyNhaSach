@@ -1,4 +1,4 @@
-﻿using QuanLyNhaSach.DLL;
+﻿using QuanLyNhaSach.DAL;
 using QuanLyNhaSach.DTO;
 using System;
 using System.Collections.Generic;
@@ -12,18 +12,18 @@ namespace QuanLyNhaSach.BLL
 {
     internal class BLLNhaXuatBan
     {
-        DataAccessLayer DLLCon = new DataAccessLayer();
+        DataAccessLayer DAL = new DataAccessLayer();
 
         public DataTable GetDataNhaXuatBan()
         {
             string query = "select * from NHAXUATBAN";
-            return DLLCon.GetTable(query);
+            return DAL.GetTable(query);
         }
 
         public bool AddNhaXuatBan(NhaXuatBan nxb)
         {
             string query = $"insert into NHAXUATBAN values ('{nxb.MANXB}', '{nxb.TENNHAXUATBAN}')";
-            if (DLLCon.RunQuery(query))
+            if (DAL.RunQuery(query))
             {
                 MessageBox.Show("Thêm thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
@@ -35,7 +35,7 @@ namespace QuanLyNhaSach.BLL
         public bool UpdateNhaXuatBan(NhaXuatBan nxb)
         {
             string query = $"update NHAXUATBAN set TENNHAXUATBAN = '{nxb.TENNHAXUATBAN}' where MANXB = '{nxb.MANXB}'";
-            if (DLLCon.RunQuery(query))
+            if (DAL.RunQuery(query))
             {
                 MessageBox.Show("Cập nhật thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
@@ -47,7 +47,7 @@ namespace QuanLyNhaSach.BLL
         public bool DeleteNhaXuatBan(NhaXuatBan nxb)
         {
             string query = $"delete from NHAXUATBAN where MANXB = '{nxb.MANXB}'";
-            if (DLLCon.RunQuery(query))
+            if (DAL.RunQuery(query))
             {
                 MessageBox.Show("Xóa thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;

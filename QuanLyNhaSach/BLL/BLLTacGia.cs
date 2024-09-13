@@ -1,4 +1,4 @@
-﻿using QuanLyNhaSach.DLL;
+﻿using QuanLyNhaSach.DAL;
 using QuanLyNhaSach.DTO;
 using System;
 using System.Collections.Generic;
@@ -12,18 +12,18 @@ namespace QuanLyNhaSach.BLL
 {
     internal class BLLTacGia
     {
-        DataAccessLayer DLLCon = new DataAccessLayer();
+        DataAccessLayer DAL = new DataAccessLayer();
 
         public DataTable GetDataTacGia()
         {
             string query = "select * from TACGIA";
-            return DLLCon.GetTable(query);
+            return DAL.GetTable(query);
         }
 
         public bool AddTacGia(TacGia tg)
         {
             string query = $"insert into TACGIA values ('{tg.MATG}', '{tg.TENTG}')";
-            if (DLLCon.RunQuery(query))
+            if (DAL.RunQuery(query))
             {
                 MessageBox.Show("Thêm thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
@@ -35,7 +35,7 @@ namespace QuanLyNhaSach.BLL
         public bool UpdateTacGia(TacGia tg)
         {
             string query = $"update TACGIA set TENTG = '{tg.TENTG}' where MATG = '{tg.MATG}'";
-            if (DLLCon.RunQuery(query))
+            if (DAL.RunQuery(query))
             {
                 MessageBox.Show("Cập nhật thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
@@ -47,7 +47,7 @@ namespace QuanLyNhaSach.BLL
         public bool DeleteTacGia(TacGia tg)
         {
             string query = $"delete from TACGIA where MATG = '{tg.MATG}'";
-            if (DLLCon.RunQuery(query))
+            if (DAL.RunQuery(query))
             {
                 MessageBox.Show("Xóa thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;

@@ -1,4 +1,4 @@
-﻿using QuanLyNhaSach.DLL;
+﻿using QuanLyNhaSach.DAL;
 using QuanLyNhaSach.DTO;
 using System;
 using System.Collections.Generic;
@@ -12,18 +12,18 @@ namespace QuanLyNhaSach.BLL
 {
     internal class BLLLoaiSach
     {
-        DataAccessLayer DLLCon = new DataAccessLayer();
+        DataAccessLayer DAL = new DataAccessLayer();
 
         public DataTable GetDataLoaiSach()
         {
             string query = "select * from LOAISACH";
-            return DLLCon.GetTable(query);
+            return DAL.GetTable(query);
         }
 
         public bool AddLoaiSach(LoaiSach ls)
         {
             string query = $"insert into LOAISACH values ('{ls.MALOAISACH}', '{ls.TENLOAISACH}')";
-            if (DLLCon.RunQuery(query))
+            if (DAL.RunQuery(query))
             {
                 MessageBox.Show("Thêm thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
@@ -35,7 +35,7 @@ namespace QuanLyNhaSach.BLL
         public bool UpdateLoaiSach(LoaiSach ls)
         {
             string query = $"update LOAISACH set TENLOAISACH = '{ls.TENLOAISACH}' where MALOAISACH = '{ls.MALOAISACH}'";
-            if (DLLCon.RunQuery(query))
+            if (DAL.RunQuery(query))
             {
                 MessageBox.Show("Cập nhật thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
@@ -47,7 +47,7 @@ namespace QuanLyNhaSach.BLL
         public bool DeleteLoaiSach(LoaiSach ls)
         {
             string query = $"delete from LOAISACH where MALOAISACH = '{ls.MALOAISACH}'";
-            if (DLLCon.RunQuery(query))
+            if (DAL.RunQuery(query))
             {
                 MessageBox.Show("Xóa thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;

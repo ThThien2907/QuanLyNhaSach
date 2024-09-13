@@ -26,8 +26,6 @@ namespace QuanLyNhaSach.GUI
 
         private void FrmOverView_Load(object sender, EventArgs e)
         {
-
-            FrmViewTong_Load();
             DataTable dt = new DataTable();
             dt = BLLSach.GetDataSach();
 
@@ -60,12 +58,11 @@ namespace QuanLyNhaSach.GUI
                 this.lsvSach.Items[i].SubItems.Add(row["NAMXUATBAN"].ToString());
                 i++;
             }
-            //asdj
-
+            LoadDoanhThuTrongNgay();
         }
 
 
-        private void FrmViewTong_Load()
+        private void LoadDoanhThuTrongNgay()
         {
             string timeNow = DateTime.Now.ToString("yyyy-MM-dd");
             label5.Text = timeNow;
@@ -83,6 +80,7 @@ namespace QuanLyNhaSach.GUI
         {
             Form f = new FrmKhoSach();
             f.ShowDialog();
+            FrmOverView_Load(sender, e);
         }
 
         private void đổiMậtKhẩuToolStripMenuItem_Click(object sender, EventArgs e)
@@ -113,18 +111,21 @@ namespace QuanLyNhaSach.GUI
         {
             Form f = new FrmHoaDon();
             f.ShowDialog();
+            FrmOverView_Load(sender, e);
         }
 
         private void tacGiaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Form f = new FrmTacGia();
             f.ShowDialog();
+            FrmOverView_Load(sender, e);
         }
 
         private void theLoaiToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Form f = new FrmLoaiSach();
             f.ShowDialog();
+            FrmOverView_Load(sender, e);
         }
 
         private void lsvSach_SelectedIndexChanged(object sender, EventArgs e)
@@ -136,6 +137,7 @@ namespace QuanLyNhaSach.GUI
         {
             Form f = new FrmNhaXuatBan();
             f.ShowDialog();
+            FrmOverView_Load(sender, e);
         }
     }
 }

@@ -26,10 +26,51 @@ namespace QuanLyNhaSach.GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!BLLTaiKhoan.ThemTaiKhoan(txtUserName.Text, txtPassWord.Text))
-                MessageBox.Show("Thêm tài khoản không thành công !!", "Thông báo", MessageBoxButtons.OK);
+            if (txtPassWord.Text.Trim() == txtRePassWord.Text.Trim())
+            {
+                if (!BLLTaiKhoan.ThemTaiKhoan(txtUserName.Text, txtPassWord.Text))
+                    MessageBox.Show("Thêm tài khoản không thành công !!", "Thông báo", MessageBoxButtons.OK);
+                else
+                    MessageBox.Show("Thêm tài khoản thành công !!", "Thông báo", MessageBoxButtons.OK);
+            }
             else
-                MessageBox.Show("Thêm tài khoản thành công !!", "Thông báo", MessageBoxButtons.OK);
+                MessageBox.Show("Mật khẩu không trùng khớp !!", "Thông báo", MessageBoxButtons.OK);
+        }
+
+        private void imgShowHide_Click(object sender, EventArgs e)
+        {
+            PictureBox pb = sender as PictureBox;
+            if (pb != null)
+            {
+                if (txtPassWord.PasswordChar == '*')
+                {
+                    pb.Image = Properties.Resources.Hide_Password_256;
+                    txtPassWord.PasswordChar = '\0';
+                }
+                else
+                {
+                    pb.Image = Properties.Resources.Show_Password_256;
+                    txtPassWord.PasswordChar = '*';
+                }
+            }
+        }
+
+        private void imgShowHideRePW_Click(object sender, EventArgs e)
+        {
+            PictureBox pb = sender as PictureBox;
+            if (pb != null)
+            {
+                if (txtRePassWord.PasswordChar == '*')
+                {
+                    pb.Image = Properties.Resources.Hide_Password_256;
+                    txtRePassWord.PasswordChar = '\0';
+                }
+                else
+                {
+                    pb.Image = Properties.Resources.Show_Password_256;
+                    txtRePassWord.PasswordChar = '*';
+                }
+            }
         }
     }
 }

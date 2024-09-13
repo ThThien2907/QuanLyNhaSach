@@ -1,4 +1,4 @@
-﻿using QuanLyNhaSach.DLL;
+﻿using QuanLyNhaSach.DAL;
 using QuanLyNhaSach.DTO;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace QuanLyNhaSach.BLL
 {
     public class BLLSach
     {
-        DataAccessLayer DLLCon = new DataAccessLayer();
+        DataAccessLayer DAL = new DataAccessLayer();
         public DataTable GetDataSach()
         {
             //string query = "select * from Sach";
@@ -21,7 +21,7 @@ namespace QuanLyNhaSach.BLL
                 "LEFT JOIN TACGIA t ON s.MATG = t.MATG " +
                 "LEFT JOIN LOAISACH ls ON s.MALOAISACH = ls.MALOAISACH " +
                 "LEFT JOIN NHAXUATBAN nxb ON s.MANXB = nxb.MANXB";
-            return DLLCon.GetTable(query);
+            return DAL.GetTable(query);
         }
 
         public DataTable GetDataKhoSach()
@@ -31,13 +31,13 @@ namespace QuanLyNhaSach.BLL
                 "LEFT JOIN TACGIA t ON s.MATG = t.MATG " +
                 "LEFT JOIN LOAISACH ls ON s.MALOAISACH = ls.MALOAISACH " +
                 "LEFT JOIN NHAXUATBAN nxb ON s.MANXB = nxb.MANXB";
-            return DLLCon.GetTable(query);
+            return DAL.GetTable(query);
         }
         
         public bool AddSach(Sach s)
         {
             string query = $"insert into SACH values ('{s.MASACH}','{s.SOLUONG}', '{s.TENSACH}', '{s.MATG}', '{s.MALOAISACH}', '{s.GIABAN}', '{s.GIANHAP}', '{s.LANTAIBAN}', '{s.MANXB}', '{s.NAMXUATBAN}')";
-            if (DLLCon.RunQuery(query))
+            if (DAL.RunQuery(query))
             {
                 MessageBox.Show("Thêm thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
@@ -49,7 +49,7 @@ namespace QuanLyNhaSach.BLL
         public bool UpdateSach(Sach s)
         {
             string query = $"update SACH set TENSACH = '{s.TENSACH}', SOLUONG = '{s.SOLUONG}', MATG = '{s.MATG}', MALOAISACH = '{s.MALOAISACH}', GIABAN = '{s.GIABAN}', GIANHAP = '{s.GIANHAP}', LANTAIBAN = '{s.LANTAIBAN}', MANXB = '{s.MANXB}', NAMXUATBAN = '{s.NAMXUATBAN}' where MASACH = '{s.MASACH}'";
-            if (DLLCon.RunQuery(query))
+            if (DAL.RunQuery(query))
             {
                 MessageBox.Show("Cập nhật thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
@@ -61,13 +61,32 @@ namespace QuanLyNhaSach.BLL
         public bool DeleteSach(Sach s)
         {
             string query = $"delete from SACH where MASACH = '{s.MASACH}'";
-            if (DLLCon.RunQuery(query))
+            if (DAL.RunQuery(query))
             {
                 MessageBox.Show("Xóa thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             else
                 return false;
+        }
+
+        public int GetSoLuongSach(string maSach)
+        {
+            string query = $"select SOLUONG from SACH where MASACH = '{maSach}'";
+            DataSet ds = DAL.GetDataSet(query);
+            int soLuong = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                DataRow row = ds.Tables[0].Rows[0];
+                soLuong = int.Parse(row["SOLUONG"].ToString());
+            }
+            return soLuong;
+        }
+
+        public bool UpdateSoLuongSach(string maSach, int soLuong)
+        {
+            string query = $"update SACH set SOLUONG = '{soLuong}' where MASACH = '{maSach}'";
+            return DAL.RunQuery(query);
         }
     }
 }

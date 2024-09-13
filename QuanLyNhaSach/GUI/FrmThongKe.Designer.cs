@@ -69,7 +69,7 @@
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker2.Location = new System.Drawing.Point(472, 19);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(188, 26);
+            this.dateTimePicker2.Size = new System.Drawing.Size(188, 30);
             this.dateTimePicker2.TabIndex = 1;
             // 
             // label2
@@ -77,7 +77,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(355, 25);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 19);
+            this.label2.Size = new System.Drawing.Size(111, 22);
             this.label2.TabIndex = 0;
             this.label2.Text = "ĐẾN NGÀY";
             // 
@@ -86,7 +86,7 @@
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(118, 19);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(188, 26);
+            this.dateTimePicker1.Size = new System.Drawing.Size(188, 30);
             this.dateTimePicker1.TabIndex = 1;
             // 
             // label1
@@ -94,7 +94,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 19);
+            this.label1.Size = new System.Drawing.Size(99, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "TỪ NGÀY";
             // 
@@ -111,7 +111,7 @@
             this.dgvThongKe.HideSelection = false;
             this.dgvThongKe.Location = new System.Drawing.Point(0, 0);
             this.dgvThongKe.Name = "dgvThongKe";
-            this.dgvThongKe.Size = new System.Drawing.Size(848, 249);
+            this.dgvThongKe.Size = new System.Drawing.Size(848, 326);
             this.dgvThongKe.TabIndex = 0;
             this.dgvThongKe.UseCompatibleStateImageBehavior = false;
             this.dgvThongKe.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
@@ -138,8 +138,9 @@
             // 
             // FrmThongKe
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(872, 495);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -147,7 +148,9 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "FrmThongKe";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thống kê";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

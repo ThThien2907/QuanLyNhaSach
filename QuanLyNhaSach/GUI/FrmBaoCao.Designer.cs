@@ -61,7 +61,7 @@
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 376);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 19);
+            this.label1.Size = new System.Drawing.Size(199, 22);
             this.label1.TabIndex = 1;
             this.label1.Text = "TỔNG DOANH THU : ";
             // 
@@ -71,7 +71,7 @@
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(12, 416);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 19);
+            this.label2.Size = new System.Drawing.Size(131, 22);
             this.label2.TabIndex = 1;
             this.label2.Text = "LỢI NHUẬN : ";
             // 
@@ -91,7 +91,7 @@
             this.txbTongDoanhThu.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txbTongDoanhThu.Location = new System.Drawing.Point(178, 378);
             this.txbTongDoanhThu.Name = "txbTongDoanhThu";
-            this.txbTongDoanhThu.Size = new System.Drawing.Size(172, 19);
+            this.txbTongDoanhThu.Size = new System.Drawing.Size(172, 23);
             this.txbTongDoanhThu.TabIndex = 3;
             // 
             // txbLoiNhuan
@@ -100,13 +100,14 @@
             this.txbLoiNhuan.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txbLoiNhuan.Location = new System.Drawing.Point(178, 416);
             this.txbLoiNhuan.Name = "txbLoiNhuan";
-            this.txbLoiNhuan.Size = new System.Drawing.Size(172, 19);
+            this.txbLoiNhuan.Size = new System.Drawing.Size(172, 23);
             this.txbLoiNhuan.TabIndex = 4;
             // 
             // FrmBaoCao
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(817, 457);
             this.Controls.Add(this.txbLoiNhuan);
             this.Controls.Add(this.txbTongDoanhThu);
@@ -116,7 +117,9 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "FrmBaoCao";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Báo cáo";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

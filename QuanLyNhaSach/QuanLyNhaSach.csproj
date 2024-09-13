@@ -55,7 +55,7 @@
     <Compile Include="BLL\BLLSach.cs" />
     <Compile Include="BLL\BLLLoaiSach.cs" />
     <Compile Include="BLL\BLLThongke.cs" />
-    <Compile Include="DLL\DataAccessLayer.cs" />
+    <Compile Include="DAL\DataAccessLayer.cs" />
     <Compile Include="DTO\Sach.cs" />
     <Compile Include="DTO\NhaXuatBan.cs" />
     <Compile Include="DTO\TacGia.cs" />
@@ -162,6 +162,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="GUI\FrmNhaXuatBan.resx">
       <DependentUpon>FrmNhaXuatBan.cs</DependentUpon>
@@ -185,6 +186,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\profile-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Show-Password-256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hide-Password-256.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

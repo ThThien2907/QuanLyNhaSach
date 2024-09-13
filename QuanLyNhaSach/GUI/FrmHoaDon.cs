@@ -26,30 +26,14 @@ namespace QuanLyNhaSach.GUI
         private bool isAdd = false;
         private void FrmHoaDon_Load(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-
             CreateLsvHoaHon();
             CreateLsvSach();
             CreateLsvChiTietHD();
 
-            dt = BLLHoaDon.GetDataHoaDon();
-            LoadDataHoaDon(dt);
-            dt = new DataTable();
-            dt = BLLSach.GetDataSach();
-            LoadDataSach(dt);
-            
+            LoadDataHoaDon();
+            LoadDataSach();
 
-            IsActiveCTHDPanel(false);
-            txbMaHD.Enabled = false;
-            txbTenKH.Enabled = false;
-            dtpNgayLap.Enabled = false;
-
-            lsvChiTietHoaDon.Enabled = false;
-            lsvSach.Enabled = false;
-            nbudSoLuong.Enabled = false;
-            btnSaveHD.Enabled = false;
-            btnCTHD.Enabled = false;
-            btnDeleteHD.Enabled = false;
+            SetDefault();
         }
         private void CreateLsvHoaHon()
         {
@@ -68,6 +52,7 @@ namespace QuanLyNhaSach.GUI
             this.lsvSach.Items.Clear();
             this.lsvSach.Columns.Add("MÃ SÁCH", 90);
             this.lsvSach.Columns.Add("TÊN SÁCH", 200);
+            this.lsvSach.Columns.Add("SỐ LƯỢNG", 90);
             this.lsvSach.Columns.Add("GIÁ BÌA", 70);
             this.lsvSach.Columns.Add("TÊN TÁC GIẢ", 170);
             this.lsvSach.Columns.Add("THỂ LOẠI", 90);
@@ -88,8 +73,10 @@ namespace QuanLyNhaSach.GUI
             this.lsvChiTietHoaDon.GridLines = true;
             this.lsvChiTietHoaDon.FullRowSelect = true;
         }
-        private void LoadDataHoaDon(DataTable dataTable)
+        private void LoadDataHoaDon()
         {
+            DataTable dataTable = new DataTable();
+            dataTable = BLLHoaDon.GetDataHoaDon();
             lsvHoaDon.Items.Clear();
             int i = 0;
             foreach (DataRow row in dataTable.Rows)
@@ -101,14 +88,17 @@ namespace QuanLyNhaSach.GUI
                 i++;
             }
         }
-        private void LoadDataSach(DataTable dataTable)
+        private void LoadDataSach()
         {
+            DataTable dataTable = new DataTable();
+            dataTable = BLLSach.GetDataSach();
             int i = 0;
-            lsvChiTietHoaDon.Items.Clear();
+            lsvSach.Items.Clear();
             foreach (DataRow row in dataTable.Rows)
             {
                 this.lsvSach.Items.Add(row["MASACH"].ToString());
                 this.lsvSach.Items[i].SubItems.Add(row["TENSACH"].ToString());
+                this.lsvSach.Items[i].SubItems.Add(row["SOLUONG"].ToString());
                 this.lsvSach.Items[i].SubItems.Add(row["GIABAN"].ToString());
                 this.lsvSach.Items[i].SubItems.Add(row["TENTG"].ToString());
                 this.lsvSach.Items[i].SubItems.Add(row["TENLOAISACH"].ToString());
@@ -116,8 +106,10 @@ namespace QuanLyNhaSach.GUI
                 i++;
             }
         }
-        private void LoadDataChiTietHoaDon(DataTable dataTable)
+        private void LoadDataChiTietHoaDon()
         {
+            DataTable dataTable = new DataTable();
+            dataTable = BLLChiTietHoaDon.GetDataChiTietHoaDon(txbMaHD.Text);
             int i = 0;
             lsvChiTietHoaDon.Items.Clear();
             foreach (DataRow row in dataTable.Rows)
@@ -133,70 +125,323 @@ namespace QuanLyNhaSach.GUI
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnCTHD.Enabled = true;
-            btnDeleteHD.Enabled = true;
-            if (lsvHoaDon.SelectedItems.Count <= 0) return;
-            ListViewItem item = lsvHoaDon.SelectedItems[0];
-            txbMaHD.Text = lsvHoaDon.SelectedItems[0].Text;
-            txbTenKH.Text = lsvHoaDon.SelectedItems[0].SubItems[1].Text;
-            dtpNgayLap.Value = DateTime.Parse(lsvHoaDon.SelectedItems[0].SubItems[2].Text);
-        }
-
-        private void listView3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lsvSach.SelectedItems.Count > 0)
+            if (lsvHoaDon.SelectedItems.Count <= 0)
             {
-                nbudSoLuong.Value = 0;
-                nbudSoLuong.Enabled = true;
+                btnCTHD.Enabled = false;
+                btnDeleteHD.Enabled = false;
             }
-            else nbudSoLuong.Enabled = false;
+            else
+            {
+                btnCTHD.Enabled = true;
+                btnDeleteHD.Enabled = true;
+                ListViewItem item = lsvHoaDon.SelectedItems[0];
+                txbMaHD.Text = lsvHoaDon.SelectedItems[0].Text;
+                txbTenKH.Text = lsvHoaDon.SelectedItems[0].SubItems[1].Text;
+                dtpNgayLap.Value = DateTime.Parse(lsvHoaDon.SelectedItems[0].SubItems[2].Text);
+            }
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            btnAddCTHD.Enabled = true;
-            btnDeleteCTHD.Enabled = true;
-            btnUpdateCTHD.Enabled = true;
-            btnCreateHD.Enabled = true;
-            btnDeleteHD.Enabled = true;
             if (isAdd)
             {
-                if (nbudSoLuong.Value <= 0)
+                if (nbudSoLuong.Value > 0)
                 {
-                    MessageBox.Show("Vui lòng điền số lượng !!!");
-                    return;
-                }
-                ListViewItem itemSach = lsvSach.SelectedItems[0];
-                ListViewItem itemChiTietHD = new ListViewItem();
-                string maSach = itemSach.SubItems[0].Text;
-                itemChiTietHD.Text = txbMaHD.Text;
-                itemChiTietHD.SubItems.Add(itemSach.Text);
-                itemChiTietHD.SubItems.Add(nbudSoLuong.Value.ToString());
-                itemChiTietHD.SubItems.Add(itemSach.SubItems[2]);
-                itemChiTietHD.SubItems.Add((nbudSoLuong.Value * int.Parse(itemSach.SubItems[2].Text.ToString())).ToString());
-                foreach (ListViewItem item in lsvChiTietHoaDon.Items)
-                {
-                    if (item.SubItems[1].Text == maSach)
+                    if (lsvSach.SelectedItems.Count > 0)
                     {
-                        int newsoLuong = int.Parse(item.SubItems[2].Text) + int.Parse(nbudSoLuong.Value.ToString());
-                        item.SubItems[2].Text = newsoLuong.ToString();
-                        item.SubItems[4].Text = ((newsoLuong * int.Parse(itemSach.SubItems[2].Text.ToString())).ToString());
-                        return;
+                        ListViewItem itemSach = lsvSach.SelectedItems[0];
+                        int soLuongSach = BLLSach.GetSoLuongSach(itemSach.Text);
+                        if (soLuongSach < int.Parse(nbudSoLuong.Value.ToString()))
+                        {
+                            MessageBox.Show("Vượt quá số lượng sách trong kho!!!");
+                        }
+                        else
+                        {
+                            ListViewItem itemChiTietHD = new ListViewItem();
+
+                            ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();
+                            chiTietHoaDon.MAHOADON = txbMaHD.Text;
+                            chiTietHoaDon.MASACH = itemSach.Text;
+                            chiTietHoaDon.SOLUONG = int.Parse(nbudSoLuong.Value.ToString());
+                            chiTietHoaDon.GIATIEN = int.Parse(itemSach.SubItems[3].Text);
+                            chiTietHoaDon.THANHTIEN = chiTietHoaDon.SOLUONG * chiTietHoaDon.GIATIEN;
+
+                            bool checkSachTrongHD = false;
+
+                            foreach (ListViewItem item in lsvChiTietHoaDon.Items)
+                            {
+                                if (itemSach.Text.Trim() == item.SubItems[1].Text.Trim())
+                                {
+                                    chiTietHoaDon.SOLUONG = int.Parse(item.SubItems[2].Text) + int.Parse(nbudSoLuong.Value.ToString());
+                                    chiTietHoaDon.THANHTIEN = chiTietHoaDon.SOLUONG * chiTietHoaDon.GIATIEN;
+                                    checkSachTrongHD = true;
+                                    break;
+                                }
+                            }
+
+                            if (checkSachTrongHD)
+                            {
+                                if (BLLChiTietHoaDon.UpdateChiTietHoaDon(chiTietHoaDon))
+                                {
+                                    BLLSach.UpdateSoLuongSach(itemSach.Text, soLuongSach - int.Parse(nbudSoLuong.Value.ToString()));
+                                    LoadDataChiTietHoaDon();
+                                    LoadDataSach();
+                                    btnAddCTHD.Enabled = true;
+                                    btnSaveCTHD.Enabled = false;
+
+                                    ActiveSachPanel(false);
+                                }
+                            }
+                            else
+                            {
+                                if (BLLChiTietHoaDon.AddChiTietHoaDon(chiTietHoaDon))
+                                {
+                                    BLLSach.UpdateSoLuongSach(itemSach.Text, soLuongSach - int.Parse(nbudSoLuong.Value.ToString()));
+                                    LoadDataChiTietHoaDon();
+                                    LoadDataSach();
+                                    btnAddCTHD.Enabled = true;
+                                    btnSaveCTHD.Enabled = false;
+
+                                    ActiveSachPanel(false);
+                                }
+
+                            }
+                        }
                     }
+                    else MessageBox.Show("Vui lòng chọn sách !!!");
                 }
-                lsvChiTietHoaDon.Items.Add(itemChiTietHD);
+                else MessageBox.Show("Vui lòng chọn số lượng !!!");
             }
             else if (isUpdate)
             {
-                if (lsvChiTietHoaDon.SelectedItems.Count <= 0) return;
-                int newsoLuong = int.Parse(nbudSoLuong.Value.ToString());
-                lsvChiTietHoaDon.SelectedItems[0].SubItems[2].Text = newsoLuong.ToString();
-                lsvChiTietHoaDon.SelectedItems[0].SubItems[4].Text = ((newsoLuong * int.Parse(lsvChiTietHoaDon.SelectedItems[0].SubItems[3].Text.ToString())).ToString());
+                if (nbudSoLuong.Value > 0)
+                {
+                    if (lsvChiTietHoaDon.SelectedItems.Count <= 0) return;
+
+                    ListViewItem cthdItem = lsvChiTietHoaDon.SelectedItems[0];
+
+                    int soLuongSach = BLLSach.GetSoLuongSach(cthdItem.SubItems[1].Text);
+                    int newSoLuong = int.Parse(nbudSoLuong.Value.ToString());
+                    int oldSoLuong = int.Parse(cthdItem.SubItems[2].Text);
+
+                    ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();
+                    chiTietHoaDon.MAHOADON = cthdItem.Text;
+                    chiTietHoaDon.MASACH = cthdItem.SubItems[1].Text;
+                    chiTietHoaDon.SOLUONG = int.Parse(nbudSoLuong.Value.ToString());
+                    chiTietHoaDon.GIATIEN = int.Parse(cthdItem.SubItems[3].Text);
+                    chiTietHoaDon.THANHTIEN = chiTietHoaDon.SOLUONG * chiTietHoaDon.GIATIEN;
+
+
+                    if (newSoLuong > oldSoLuong)
+                    {
+                        if (soLuongSach >= newSoLuong - oldSoLuong)
+                        {
+                            if (BLLChiTietHoaDon.UpdateChiTietHoaDon(chiTietHoaDon))
+                            {
+                                BLLSach.UpdateSoLuongSach(cthdItem.SubItems[1].Text, soLuongSach - (newSoLuong - oldSoLuong));
+                                LoadDataChiTietHoaDon();
+                                LoadDataSach();
+                                btnAddCTHD.Enabled = true;
+                                btnUpdateCTHD.Enabled = false;
+                                btnDeleteCTHD.Enabled = false;
+                                btnSaveCTHD.Enabled = false;
+                                lsvChiTietHoaDon.Enabled = true;
+
+                                ActiveSachPanel(false);
+                            }
+                        }
+                        else MessageBox.Show("Vượt quá số lượng sách trong kho!!!");
+                    }
+                    else
+                    {
+                        if (BLLChiTietHoaDon.UpdateChiTietHoaDon(chiTietHoaDon))
+                        {
+                            BLLSach.UpdateSoLuongSach(cthdItem.SubItems[1].Text, soLuongSach + (oldSoLuong - newSoLuong));
+                            LoadDataChiTietHoaDon();
+                            LoadDataSach();
+                            btnAddCTHD.Enabled = true;
+                            btnUpdateCTHD.Enabled = false;
+                            btnDeleteCTHD.Enabled = false;
+                            btnSaveCTHD.Enabled = false;
+                            lsvChiTietHoaDon.Enabled = true;
+
+                            ActiveSachPanel(false);
+                        }
+                    }
+                }
+                else MessageBox.Show("Vui lòng chọn số lượng !!!");
             }
-            /*EditChiTietHoaDonData(txbMaHD.Text);
-            IsActiveCTHDPanel(false);
-            ActiveSachPanel(false);
+        }
+        private void ActiveSachPanel(bool trueFalse)
+        {
+            lsvSach.Enabled = trueFalse;
+            nbudSoLuong.Enabled = trueFalse;
+            nbudSoLuong.Value = 0;
+
+        }
+
+        private void SetDefault()
+        {
+            btnAddCTHD.Enabled = false;
+            btnSaveCTHD.Enabled = false;
+            btnUpdateCTHD.Enabled = false;
+            btnDeleteCTHD.Enabled = false;
+
+            btnCreateHD.Enabled = true;
+            btnCTHD.Enabled = false;
+            btnDeleteHD.Enabled = false;
+            btnSaveHD.Enabled = false;
+            btnConfirm.Enabled = false;
+
+            txbMaHD.Clear();
+            txbTenKH.Clear();
+
+            lsvHoaDon.Enabled = true;
             lsvChiTietHoaDon.Enabled = false;
+            ActiveSachPanel(false);
+        }
+
+        private void lsvChiTietHoaDon_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lsvChiTietHoaDon.SelectedItems.Count > 0)
+            {
+                ListViewItem cthdItem = lsvChiTietHoaDon.SelectedItems[0];
+                nbudSoLuong.Value = int.Parse(cthdItem.SubItems[2].Text);
+
+                btnUpdateCTHD.Enabled = true;
+                btnDeleteCTHD.Enabled = true;
+            }
+            else
+            {
+                nbudSoLuong.Value = 0;
+
+                btnUpdateCTHD.Enabled = false;
+                btnDeleteCTHD.Enabled = false;
+            }
+        }
+
+        private void btnXoaHD_Click(object sender, EventArgs e)
+        {
+            if (lsvHoaDon.SelectedItems.Count > 0)
+            {
+                if (MessageBox.Show("Bạn chắc chắc muốn xóa hóa đơn " + txbMaHD.Text + " ?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    DataTable dataTable = new DataTable();
+                    dataTable = BLLChiTietHoaDon.GetDataChiTietHoaDon(txbMaHD.Text);
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        string maHD = row["MAHOADON"].ToString();
+                        string maSach = row["MASACH"].ToString();
+                        int soLuong = int.Parse(row["SOLUONG"].ToString());
+                        int soLuongSachTrongKho = BLLSach.GetSoLuongSach(maSach);
+
+                        if (BLLChiTietHoaDon.DeleteChiTietHoaDon(maHD, maSach))
+                        {
+                            BLLSach.UpdateSoLuongSach(maSach, soLuongSachTrongKho + soLuong);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Lỗi !!!");
+                            break;
+                        }
+                    }
+                    BLLHoaDon.DeleteHoaDon(lsvHoaDon.SelectedItems[0].Text);
+                    btnCTHD.Enabled = false;
+                    btnDeleteHD.Enabled = false;
+                    txbMaHD.Clear();
+                    txbTenKH.Clear();
+                    LoadDataHoaDon();
+                    LoadDataSach();
+                }
+            }
+        }
+
+
+        private void btnDeleteCTHD_Click(object sender, EventArgs e)
+        {
+            if (lsvChiTietHoaDon.SelectedItems.Count > 0)
+            {
+                ListViewItem cthdItem = lsvChiTietHoaDon.SelectedItems[0];
+                if (MessageBox.Show("Bạn chắc chắc muốn xóa sách " + cthdItem.SubItems[1].Text + " khỏi hóa đơn ?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    int soLuongSach = BLLSach.GetSoLuongSach(cthdItem.SubItems[1].Text);
+
+                    if (BLLChiTietHoaDon.DeleteChiTietHoaDon(cthdItem.Text, cthdItem.SubItems[1].Text))
+                    {
+                        BLLSach.UpdateSoLuongSach(cthdItem.SubItems[1].Text, soLuongSach + int.Parse(cthdItem.SubItems[2].Text));
+                        LoadDataChiTietHoaDon();
+                        LoadDataSach();
+                        btnAddCTHD.Enabled = true;
+                        btnUpdateCTHD.Enabled = false;
+                        btnDeleteCTHD.Enabled = false;
+                    }
+                }
+            }
+        }
+        
+        private void btnUpdateCTHD_Click(object sender, EventArgs e)
+        {
+            isAdd = false;
+            isUpdate = true;
+            btnSaveCTHD.Enabled = true;
+            btnAddCTHD.Enabled = false;
+            btnDeleteCTHD.Enabled = false;
+
+            nbudSoLuong.Enabled = true;
+            lsvChiTietHoaDon.Enabled = false;
+        }
+
+        private void btnCreateHD_Click(object sender, EventArgs e)
+        {
+            txbMaHD.Enabled = true;
+            txbTenKH.Enabled = true;
+            txbMaHD.Clear();
+            txbTenKH.Clear();
+            txbMaHD.Focus();
+            dtpNgayLap.Value = DateTime.Now;
+
+            lsvHoaDon.Enabled = false;
+            btnConfirm.Enabled = true;
+            btnCTHD.Enabled = false;
+            btnDeleteHD.Enabled = false;
+        }
+
+        private void btnCTHD_Click(object sender, EventArgs e)
+        {
+            if (lsvHoaDon.SelectedItems.Count > 0)
+            {
+                dtpNgayLap.Value = DateTime.Now;
+                btnCreateHD.Enabled = false;
+                btnDeleteHD.Enabled = false;
+                btnSaveHD.Enabled = true;
+                lsvChiTietHoaDon.Enabled = true;
+                lsvHoaDon.Enabled = false;
+
+                btnAddCTHD.Enabled = true;
+
+                LoadDataChiTietHoaDon();
+
+            }
+        }
+
+        private void btnAddCTHD_Click(object sender, EventArgs e)
+        {
+            isAdd = true;
+            isUpdate = false;
+            btnUpdateCTHD.Enabled = false;
+            btnDeleteCTHD.Enabled = false;
+            btnSaveCTHD.Enabled = true;
+
+            lsvSach.Enabled = true;
+            nbudSoLuong.Enabled = true;
+            nbudSoLuong.Value = 0;
+
+        }
+
+        private void btnSaveHD_Click(object sender, EventArgs e)
+        {
             HoaDon newHD = new HoaDon();
             newHD.MAHOADON = txbMaHD.Text;
             newHD.TENKHACHHANG = txbTenKH.Text;
@@ -207,204 +452,44 @@ namespace QuanLyNhaSach.GUI
                 S += int.Parse(item.SubItems[4].Text);
             }
             newHD.TONGTIEN = S;
-            BLLHoaDon.UpdateHoaDon(newHD);
-            FrmHoaDon_Load(sender, e);*/
-        }
-        private void ActiveSachPanel(bool trueFalse)
-        {
-            lsvSach.Enabled = trueFalse;
-            nbudSoLuong.Enabled = trueFalse;
-
-        }
-        private void IsActiveCTHDPanel(bool isActive)
-        {
-            btnAddCTHD.Enabled = isActive;
-            btnSaveCTHD.Enabled = isActive;
-            btnUpdateCTHD.Enabled = isActive;
-            btnDeleteCTHD.Enabled = isActive;
-        }
-
-        private void lsvChiTietHoaDon_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnXoaHD_Click(object sender, EventArgs e)
-        {
-            if (lsvHoaDon.SelectedItems.Count <= 0) return;
-            BLLChiTietHoaDon.DeleteChiTietHoaDon(lsvHoaDon.SelectedItems[0].SubItems[0].Text);
-            BLLHoaDon.DeleteHoaDon(lsvHoaDon.SelectedItems[0].SubItems[0].Text);
-            LoadDataHoaDon(BLLHoaDon.GetDataHoaDon());
-            FrmHoaDon_Load(sender, e);
-        }
-
-
-        private void btnDeleteCTHD_Click(object sender, EventArgs e)
-        {
-            if (lsvChiTietHoaDon.SelectedItems.Count <= 0) return;
-            ListViewItem item = lsvChiTietHoaDon.SelectedItems[0];
-            lsvChiTietHoaDon.Items.Remove(item);
-            //BLLChiTietHoaDon.DeleteChiTietHoaDon(item.Text, item.SubItems[1].Text);
-        }
-        private void EditChiTietHoaDonData(string maHD)
-        {
-            BLLChiTietHoaDon.DeleteChiTietHoaDon(maHD);
-            AddCTHD();
-        }
-        private void AddCTHD()
-        {
-            foreach (ListViewItem item in lsvChiTietHoaDon.Items)
+            if (BLLHoaDon.UpdateHoaDon(newHD))
             {
-                ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();
-                chiTietHoaDon.MAHOADON = txbMaHD.Text;
-                chiTietHoaDon.MASACH = item.SubItems[1].Text;
-                chiTietHoaDon.TENSACH = item.SubItems[2].Text;
-                chiTietHoaDon.SOLUONG = int.Parse(item.SubItems[2].Text);
-                chiTietHoaDon.GIATIEN = int.Parse(item.SubItems[3].Text);
-                chiTietHoaDon.THANHTIEN = int.Parse(item.SubItems[4].Text);
-                BLLChiTietHoaDon.AddChiTietHoaDon(chiTietHoaDon);
+                FrmHoaDon_Load(sender, e);
+                SetDefault();
             }
         }
 
-        private void btnUpdateCTHD_Click(object sender, EventArgs e)
+        private void btnConfirm_Click(object sender, EventArgs e)
         {
-            isAdd = false;
-            isUpdate = true;
-            btnSaveCTHD.Enabled = true;
-            btnAddCTHD.Enabled = false;
-            btnDeleteCTHD.Enabled = false;
-            if (lsvChiTietHoaDon.SelectedItems.Count <= 0) return;
-            ListViewItem cthdItem = lsvChiTietHoaDon.SelectedItems[0];
-            nbudSoLuong.Value = int.Parse(cthdItem.SubItems[2].Text);
-            nbudSoLuong.Enabled = true;
-
-            
-        }
-
-        private void btnCreateHD_Click(object sender, EventArgs e)
-        {
-            btnAddCTHD.Enabled = true;
-            btnSaveCTHD.Enabled = false;
-            btnUpdateCTHD.Enabled = true;
-            btnDeleteCTHD.Enabled = true;
-            btnSaveHD.Enabled = true;
-
-            txbMaHD.Enabled = true;
-            txbTenKH.Enabled = true;
-            txbMaHD.Clear();
-            txbTenKH.Clear();
-            dtpNgayLap.Value = DateTime.Now;
-            dtpNgayLap.Enabled = true;
-
-            lsvChiTietHoaDon.Enabled = true;
-            lsvChiTietHoaDon.Items.Clear();
-
-            lsvSach.Enabled = true;
-        }
-
-        private void btnCTHD_Click(object sender, EventArgs e)
-        {
-            if (lsvHoaDon.SelectedItems.Count <= 0) return;
-            dtpNgayLap.Enabled = true;
-            btnCreateHD.Enabled = false;
-            btnDeleteHD.Enabled = false;
-            btnSaveHD.Enabled = true;
-            lsvChiTietHoaDon.Enabled = true;
-            lsvSach.Enabled = true;
-            lsvHoaDon.Enabled = false;
-            lsvSach.Enabled = false;
-            IsActiveCTHDPanel(true);
-
-            LoadDataChiTietHoaDon(BLLChiTietHoaDon.GetDataChiTietHoaDon(txbMaHD.Text));
-        }
-
-        private void btnAddCTHD_Click(object sender, EventArgs e)
-        {
-            isAdd = true;
-            isUpdate = false;
-            btnUpdateCTHD.Enabled = false;
-            btnDeleteCTHD.Enabled = false;
-            btnSaveCTHD.Enabled = true;
-            lsvSach.Enabled = true;
-            nbudSoLuong.Enabled = true;
-
-            /*if (nbudSoLuong.Value <= 0)
+            if (txbMaHD.Text != string.Empty && txbTenKH.Text != string.Empty)
             {
-                MessageBox.Show("Vui lòng điền số lượng !!!");
-                return;
-            }
-            ListViewItem itemSach = lsvSach.SelectedItems[0];
-            ListViewItem itemChiTietHD = new ListViewItem();
-            string maSach = itemSach.SubItems[0].Text;
-            itemChiTietHD.Text = txbMaHD.Text;
-            itemChiTietHD.SubItems.Add(itemSach.Text);
-            itemChiTietHD.SubItems.Add(nbudSoLuong.Value.ToString());
-            itemChiTietHD.SubItems.Add(itemSach.SubItems[2]);
-            itemChiTietHD.SubItems.Add((nbudSoLuong.Value * int.Parse(itemSach.SubItems[2].Text.ToString())).ToString());
-            foreach (ListViewItem item in lsvChiTietHoaDon.Items)
-            {
-                if (item.SubItems[1].Text == maSach)
+                if (!BLLHoaDon.Check(txbMaHD.Text))
                 {
-                    int newsoLuong = int.Parse(item.SubItems[2].Text) + int.Parse(nbudSoLuong.Value.ToString());
-                    item.SubItems[2].Text = newsoLuong.ToString();
-                    item.SubItems[4].Text = ((newsoLuong * int.Parse(itemSach.SubItems[2].Text.ToString())).ToString());
-                    return;
-                }
-            }
-            lsvChiTietHoaDon.Items.Add(itemChiTietHD);*/
-        }
-
-        private void btnSaveHD_Click(object sender, EventArgs e)
-        {
-            if (txbMaHD.Enabled == true)
-            {
-                if (txbMaHD.Text != string.Empty && txbTenKH.Text != string.Empty)
-                {
-                    if (!BLLHoaDon.Check(txbMaHD.Text))
+                    HoaDon newHD = new HoaDon();
+                    newHD.MAHOADON = txbMaHD.Text;
+                    newHD.TENKHACHHANG = txbTenKH.Text;
+                    newHD.NGAYLAP = dtpNgayLap.Text;
+                    newHD.TONGTIEN = 0;
+                    if (BLLHoaDon.AddHoaDon(newHD))
                     {
-                        btnSaveCTHD.Enabled = false;
+                        btnCreateHD.Enabled = false;
+                        btnConfirm.Enabled = false;
+
                         txbMaHD.Enabled = false;
                         txbTenKH.Enabled = false;
                         dtpNgayLap.Enabled = false;
-                        HoaDon newHD = new HoaDon();
-                        newHD.MAHOADON = txbMaHD.Text;
-                        newHD.TENKHACHHANG = txbTenKH.Text;
-                        newHD.NGAYLAP = dtpNgayLap.Text;
-                        int S = 0;
-                        foreach (ListViewItem item in lsvChiTietHoaDon.Items)
-                        {
-                            S += int.Parse(item.SubItems[4].Text);
-                        }
-                        newHD.TONGTIEN = S;
-                        BLLHoaDon.AddHoaDon(newHD);
 
-                        AddCTHD();
-                        //EditChiTietHoaDonData(txbMaHD.Text);
-                        FrmHoaDon_Load(sender, e);
+                        btnAddCTHD.Enabled = true;
+                        btnSaveCTHD.Enabled = false;
+                        btnSaveHD.Enabled = true;
+
+                        lsvChiTietHoaDon.Enabled = true;
+                        lsvChiTietHoaDon.Items.Clear();
                     }
-                    else MessageBox.Show("Mã hóa đơn đã tồn tại !!!");
                 }
-                else MessageBox.Show("Vui lòng điền đầy đủ thông tin !!!");
+                else MessageBox.Show("Mã hóa đơn đã tồn tại !!!");
             }
-            else
-            {
-                EditChiTietHoaDonData(txbMaHD.Text);
-                IsActiveCTHDPanel(false);
-                ActiveSachPanel(false);
-                lsvChiTietHoaDon.Enabled = false;
-                HoaDon newHD = new HoaDon();
-                newHD.MAHOADON = txbMaHD.Text;
-                newHD.TENKHACHHANG = txbTenKH.Text;
-                newHD.NGAYLAP = dtpNgayLap.Text;
-                int S = 0;
-                foreach (ListViewItem item in lsvChiTietHoaDon.Items)
-                {
-                    S += int.Parse(item.SubItems[4].Text);
-                }
-                newHD.TONGTIEN = S;
-                BLLHoaDon.UpdateHoaDon(newHD);
-                FrmHoaDon_Load(sender, e);
-            }
+            else MessageBox.Show("Vui lòng điền đầy đủ thông tin !!!");
         }
     }
 }

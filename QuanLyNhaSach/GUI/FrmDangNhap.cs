@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QuanLyNhaSach.GUI
 {
@@ -48,8 +49,6 @@ namespace QuanLyNhaSach.GUI
                     count = 1;
                 }
             }
-            txbTenDangNhap.Text = "";
-            txbMatKhau.Text = "";
         }
 
         bool Login(string username, string password)
@@ -72,6 +71,24 @@ namespace QuanLyNhaSach.GUI
         {
             //Khi ấn nút thoát thì sẽ thoát khỏi chương trình
             Application.Exit();
+        }
+
+        private void imgShowHide_Click(object sender, EventArgs e)
+        {
+            PictureBox pb = sender as PictureBox;
+            if (pb != null)
+            {
+                if (txbMatKhau.PasswordChar == '*')
+                {
+                    pb.Image = Properties.Resources.Hide_Password_256;
+                    txbMatKhau.PasswordChar = '\0';
+                }
+                else
+                {
+                    pb.Image = Properties.Resources.Show_Password_256;
+                    txbMatKhau.PasswordChar = '*';
+                }
+            }
         }
     }
 }

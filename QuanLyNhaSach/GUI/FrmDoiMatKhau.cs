@@ -48,5 +48,59 @@ namespace QuanLyNhaSach.GUI
             if (MessageBox.Show("Bạn chắc chắc muốn thoát!!!", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 this.Close();
         }
+
+        private void imgShowHide_Click(object sender, EventArgs e)
+        {
+            PictureBox pb = sender as PictureBox;
+            if (pb != null)
+            {
+                if (txtPassWord.PasswordChar == '*')
+                {
+                    pb.Image = Properties.Resources.Hide_Password_256;
+                    txtPassWord.PasswordChar = '\0';
+                }
+                else
+                {
+                    pb.Image = Properties.Resources.Show_Password_256;
+                    txtPassWord.PasswordChar = '*';
+                }
+            }
+        }
+
+        private void imgShowHideNewPW_Click(object sender, EventArgs e)
+        {
+            PictureBox pb = sender as PictureBox;
+            if (pb != null)
+            {
+                if (txtNewPW.PasswordChar == '*')
+                {
+                    pb.Image = Properties.Resources.Hide_Password_256;
+                    txtNewPW.PasswordChar = '\0';
+                }
+                else
+                {
+                    pb.Image = Properties.Resources.Show_Password_256;
+                    txtNewPW.PasswordChar = '*';
+                }
+            }
+        }
+
+        private void imgShowHideReNewPW_Click(object sender, EventArgs e)
+        {
+            PictureBox pb = sender as PictureBox;
+            if (pb != null)
+            {
+                if (txtReNewPW.PasswordChar == '*')
+                {
+                    pb.Image = Properties.Resources.Hide_Password_256;
+                    txtReNewPW.PasswordChar = '\0';
+                }
+                else
+                {
+                    pb.Image = Properties.Resources.Show_Password_256;
+                    txtReNewPW.PasswordChar = '*';
+                }
+            }
+        }
     }
 }
