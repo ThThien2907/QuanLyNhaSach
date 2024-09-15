@@ -46,7 +46,11 @@ namespace QuanLyNhaSach.BLL
 
         public bool DeleteTacGia(TacGia tg)
         {
-            string query = $"delete from TACGIA where MATG = '{tg.MATG}'";
+            //Update TacGia = Default
+            string query = $"update SACH SET MATG = 'TG000' where MATG = '{tg.MATG}'";
+            DAL.RunQuery(query);
+
+            query = $"delete from TACGIA where MATG = '{tg.MATG}'";
             if (DAL.RunQuery(query))
             {
                 MessageBox.Show("Xóa thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

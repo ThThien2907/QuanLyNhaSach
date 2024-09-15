@@ -46,7 +46,11 @@ namespace QuanLyNhaSach.BLL
 
         public bool DeleteNhaXuatBan(NhaXuatBan nxb)
         {
-            string query = $"delete from NHAXUATBAN where MANXB = '{nxb.MANXB}'";
+            //Update NXB = Default
+            string query = $"update SACH SET MANXB = 'NXB000' where MANXB = '{nxb.MANXB}'";
+            DAL.RunQuery(query);
+
+            query = $"delete from NHAXUATBAN where MANXB = '{nxb.MANXB}'";
             if (DAL.RunQuery(query))
             {
                 MessageBox.Show("Xóa thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

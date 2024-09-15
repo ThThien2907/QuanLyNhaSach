@@ -38,6 +38,9 @@ namespace QuanLyNhaSach
             int i = 0;
             foreach (DataRow row in dt.Rows)
             {
+                //Bỏ qua NXB mặc định MANXB == "NXB000"
+                if (row["MANXB"].ToString().Trim() == "NXB000".Trim()) continue;
+
                 this.lsvNXB.Items.Add(row["MANXB"].ToString());
                 this.lsvNXB.Items[i].SubItems.Add(row["TENNHAXUATBAN"].ToString());
                 i++;
