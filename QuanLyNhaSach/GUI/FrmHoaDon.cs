@@ -358,13 +358,22 @@ namespace QuanLyNhaSach.GUI
                             break;
                         }
                     }
-                    BLLHoaDon.DeleteHoaDon(lsvHoaDon.SelectedItems[0].Text);
-                    btnCTHD.Enabled = false;
-                    btnDeleteHD.Enabled = false;
-                    txbMaHD.Clear();
-                    txbTenKH.Clear();
-                    LoadDataHoaDon();
-                    LoadDataSach();
+                    if (BLLHoaDon.DeleteHoaDon(lsvHoaDon.SelectedItems[0].Text))
+                    {
+                        MessageBox.Show("Xóa thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnCTHD.Enabled = false;
+                        btnDeleteHD.Enabled = false;
+                        btnXuatHD.Enabled = false;
+                        txbMaHD.Clear();
+                        txbTenKH.Clear();
+                        LoadDataHoaDon();
+                        LoadDataSach();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa thất bại !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    
                 }
             }
         }
@@ -675,7 +684,7 @@ namespace QuanLyNhaSach.GUI
 
                 MessageBox.Show("Xuất hóa đơn thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("Xuất hóa đơn không thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

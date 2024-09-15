@@ -33,6 +33,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lsvChiTietHoaDon = new System.Windows.Forms.ListView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnXuatHD = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnDeleteHD = new System.Windows.Forms.Button();
             this.dtpNgayLap = new System.Windows.Forms.DateTimePicker();
@@ -54,7 +55,6 @@
             this.btnSaveCTHD = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btnSaveHD = new System.Windows.Forms.Button();
-            this.btnXuatHD = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -118,6 +118,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(672, 467);
             this.panel2.TabIndex = 2;
+            // 
+            // btnXuatHD
+            // 
+            this.btnXuatHD.Enabled = false;
+            this.btnXuatHD.Location = new System.Drawing.Point(22, 15);
+            this.btnXuatHD.Name = "btnXuatHD";
+            this.btnXuatHD.Size = new System.Drawing.Size(164, 45);
+            this.btnXuatHD.TabIndex = 6;
+            this.btnXuatHD.Text = "Xuất hóa đơn";
+            this.btnXuatHD.UseVisualStyleBackColor = true;
+            this.btnXuatHD.Click += new System.EventHandler(this.btnXuatHD_Click);
             // 
             // btnConfirm
             // 
@@ -323,22 +334,12 @@
             this.btnSaveHD.UseVisualStyleBackColor = true;
             this.btnSaveHD.Click += new System.EventHandler(this.btnSaveHD_Click);
             // 
-            // btnXuatHD
-            // 
-            this.btnXuatHD.Enabled = false;
-            this.btnXuatHD.Location = new System.Drawing.Point(22, 15);
-            this.btnXuatHD.Name = "btnXuatHD";
-            this.btnXuatHD.Size = new System.Drawing.Size(164, 45);
-            this.btnXuatHD.TabIndex = 6;
-            this.btnXuatHD.Text = "Xuất hóa đơn";
-            this.btnXuatHD.UseVisualStyleBackColor = true;
-            this.btnXuatHD.Click += new System.EventHandler(this.btnXuatHD_Click);
-            // 
             // FrmHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1490, 771);
             this.Controls.Add(this.nbudSoLuong);
             this.Controls.Add(this.label3);

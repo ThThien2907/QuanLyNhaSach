@@ -101,7 +101,6 @@ namespace QuanLyNhaSach
                         txtMaNXB.Clear();
                         txtTenNXB.Clear();
                     }
-
                 }
             }
             else

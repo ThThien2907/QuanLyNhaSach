@@ -102,11 +102,11 @@ namespace QuanLyNhaSach.GUI
             // lblMatKhau
             // 
             this.lblMatKhau.AutoSize = true;
-            this.lblMatKhau.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMatKhau.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMatKhau.Location = new System.Drawing.Point(4, 11);
             this.lblMatKhau.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMatKhau.Name = "lblMatKhau";
-            this.lblMatKhau.Size = new System.Drawing.Size(119, 22);
+            this.lblMatKhau.Size = new System.Drawing.Size(124, 23);
             this.lblMatKhau.TabIndex = 0;
             this.lblMatKhau.Text = "MẬT KHẨU:";
             // 
@@ -131,11 +131,11 @@ namespace QuanLyNhaSach.GUI
             // lblTenDangNhap
             // 
             this.lblTenDangNhap.AutoSize = true;
-            this.lblTenDangNhap.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTenDangNhap.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTenDangNhap.Location = new System.Drawing.Point(4, 17);
             this.lblTenDangNhap.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTenDangNhap.Name = "lblTenDangNhap";
-            this.lblTenDangNhap.Size = new System.Drawing.Size(173, 22);
+            this.lblTenDangNhap.Size = new System.Drawing.Size(180, 23);
             this.lblTenDangNhap.TabIndex = 0;
             this.lblTenDangNhap.Text = "TÊN ĐĂNG NHẬP:";
             // 
@@ -154,6 +154,7 @@ namespace QuanLyNhaSach.GUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(851, 247);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
