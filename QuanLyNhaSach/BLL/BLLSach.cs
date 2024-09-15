@@ -70,6 +70,19 @@ namespace QuanLyNhaSach.BLL
                 return false;
         }
 
+        public string GetTenSach(string maSach)
+        {
+            string query = $"select TENSACH from SACH where MASACH = '{maSach}'";
+            DataSet ds = DAL.GetDataSet(query);
+            string tenSach = "";
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                DataRow row = ds.Tables[0].Rows[0];
+                tenSach = row["TENSACH"].ToString();
+            }
+            return tenSach;
+        }
+
         public int GetSoLuongSach(string maSach)
         {
             string query = $"select SOLUONG from SACH where MASACH = '{maSach}'";

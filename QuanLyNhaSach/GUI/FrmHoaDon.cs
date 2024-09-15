@@ -5,11 +5,20 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
+
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.Drawing.Drawing2D;
 
 namespace QuanLyNhaSach.GUI
 {
@@ -129,11 +138,13 @@ namespace QuanLyNhaSach.GUI
             {
                 btnCTHD.Enabled = false;
                 btnDeleteHD.Enabled = false;
+                btnXuatHD.Enabled = false;
             }
             else
             {
                 btnCTHD.Enabled = true;
                 btnDeleteHD.Enabled = true;
+                btnXuatHD.Enabled = true;
                 ListViewItem item = lsvHoaDon.SelectedItems[0];
                 txbMaHD.Text = lsvHoaDon.SelectedItems[0].Text;
                 txbTenKH.Text = lsvHoaDon.SelectedItems[0].SubItems[1].Text;
@@ -413,8 +424,11 @@ namespace QuanLyNhaSach.GUI
             if (lsvHoaDon.SelectedItems.Count > 0)
             {
                 dtpNgayLap.Value = DateTime.Now;
+
                 btnCreateHD.Enabled = false;
                 btnDeleteHD.Enabled = false;
+                btnXuatHD.Enabled = false;
+
                 btnSaveHD.Enabled = true;
                 lsvChiTietHoaDon.Enabled = true;
                 lsvHoaDon.Enabled = false;
@@ -490,6 +504,181 @@ namespace QuanLyNhaSach.GUI
                 else MessageBox.Show("Mã hóa đơn đã tồn tại !!!");
             }
             else MessageBox.Show("Vui lòng điền đầy đủ thông tin !!!");
+        }
+
+        private async void btnXuatHD_Click(object sender, EventArgs e)
+        {
+            if (lsvHoaDon.SelectedItems.Count > 0)
+            {
+                ListViewItem item = lsvHoaDon.SelectedItems[0];
+                // URL API để tạo mã QR
+                string apiUrl = "https://api.vietqr.io/v2/generate";
+
+                // Thông tin thanh toán
+                var paymentInfo = new
+                {
+                    accountNo = "050125778485",
+                    acqId = 970403,
+                    amount = item.SubItems[3].Text.Split('.')[0],
+                    accountName = "TA THANH THIEN",
+                    addInfo = "Thanh toán hóa đơn " + item.Text.Trim(),
+                    template = "qr_only",
+                };
+
+                // Gọi API để tạo mã QR
+                using (HttpClient client = new HttpClient())
+                {
+                    var response = await client.PostAsJsonAsync(apiUrl, paymentInfo);
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine(responseContent);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        //var qrCodeUrl = await response.Content.ReadAsStringAsync();
+                        var qrDataUrl = ExtractQrDataUrl(responseContent);
+                        CreatePdfWithQrCode(qrDataUrl, item);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Lỗi khi gọi API: " + response.ReasonPhrase);
+                    }
+                }
+            }
+            
+        }
+
+        private string ExtractQrDataUrl(string jsonResponse)
+        {
+            // Giả sử jsonResponse là chuỗi JSON chứa trường qrDataURL
+            // Bạn có thể sử dụng thư viện JSON như Newtonsoft.Json để phân tích chuỗi JSON này
+            dynamic json = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonResponse);
+            return json.data.qrDataURL;
+        }
+
+        private void CreatePdfWithQrCode(string qrDataUrl, ListViewItem item)
+        {
+            try
+            {
+                // Giải mã base64 để lấy byte array của hình ảnh mã QR
+                string base64Data = qrDataUrl.Split(',')[1]; // Bỏ phần "data:image/png;base64,"
+                byte[] qrImageBytes = Convert.FromBase64String(base64Data);
+
+
+                //Tạo đối tượng Document
+                Document doc = new Document(PageSize.A4, 50, 50, 25, 25);
+
+                // Đường dẫn lưu file PDF
+                string path = "D:/hoa_don_mua_hang.pdf";
+
+                // Tạo đối tượng PdfWriter
+                PdfWriter.GetInstance(doc, new FileStream(path, FileMode.Create));
+
+                // Mở document để ghi nội dung
+                doc.Open();
+
+                string fontPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Fonts", "TIMES.TTF");
+                // Tạo font chữ
+                BaseFont bf = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                iTextSharp.text.Font fontTitle = new iTextSharp.text.Font(bf, 20, iTextSharp.text.Font.BOLD);
+                iTextSharp.text.Font fontContentBold = new iTextSharp.text.Font(bf, 13, iTextSharp.text.Font.BOLD);
+                iTextSharp.text.Font fontContentNomal = new iTextSharp.text.Font(bf, 13, iTextSharp.text.Font.NORMAL);
+                iTextSharp.text.Font fontContentItalic = new iTextSharp.text.Font(bf, 13, iTextSharp.text.Font.ITALIC);
+
+                // Thêm tiêu đề hóa đơn
+                Paragraph p = new Paragraph("HÓA ĐƠN MUA HÀNG TẠI NHÀ SÁCH TQT", fontTitle);
+                p.Alignment = Element.ALIGN_CENTER;
+                doc.Add(p);
+
+                // Thêm khoảng trống
+                doc.Add(new Paragraph("\n"));
+
+                PdfPTable table = new PdfPTable(4);
+                table.WidthPercentage = 100;
+                table.SetWidths(new float[] { 1, 1, 1, 1 });
+
+                table.AddCell(new PdfPCell(new Phrase("Mã hóa đơn: ", fontContentNomal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+                table.AddCell(new PdfPCell(new Phrase(item.Text, fontContentBold)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                table.AddCell(new PdfPCell(new Phrase("Tên khách hàng: ", fontContentNomal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+                table.AddCell(new PdfPCell(new Phrase(item.SubItems[1].Text, fontContentBold)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+
+                doc.Add(table);
+
+                //doc.Add(new Paragraph("\n"));
+                Paragraph underline = new Paragraph("----------------------------------------------------------------------------------------------------------", fontContentNomal);
+                underline.Alignment = Element.ALIGN_CENTER;
+                doc.Add(underline);
+
+                doc.Add(new Paragraph("\n"));
+
+                // Thêm nội dung hóa đơn
+                table = new PdfPTable(4);
+                table.WidthPercentage = 100;
+                table.SetWidths(new float[] { 2, 1, 1, 1 });
+
+                // Thêm các ô vào bảng
+                table.AddCell(new PdfPCell(new Phrase("TÊN SẢN PHẨM", fontContentBold)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                table.AddCell(new PdfPCell(new Phrase("SỐ LƯỢNG", fontContentBold)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+                table.AddCell(new PdfPCell(new Phrase("GIÁ TIỀN", fontContentBold)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+                table.AddCell(new PdfPCell(new Phrase("THÀNH TIỀN", fontContentBold)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+
+                DataTable dt = BLLChiTietHoaDon.GetDataChiTietHoaDon(item.Text);
+
+                foreach (DataRow row in dt.Rows)
+                {
+
+                    table.AddCell(new PdfPCell(new Phrase(BLLSach.GetTenSach(row["MASACH"].ToString()), fontContentNomal)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                    table.AddCell(new PdfPCell(new Phrase(row["SOLUONG"].ToString(), fontContentNomal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+                    table.AddCell(new PdfPCell(new Phrase(row["GIATIEN"].ToString(), fontContentNomal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+                    table.AddCell(new PdfPCell(new Phrase(row["THANHTIEN"].ToString(), fontContentNomal)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+                }
+
+                // Thêm bảng vào document
+                doc.Add(table);
+
+                doc.Add(underline);
+
+                doc.Add(new Paragraph("\n"));
+
+                table = new PdfPTable(4);
+                table.WidthPercentage = 100;
+                table.SetWidths(new float[] { 2, 1, 1, 1 });
+
+
+                table.AddCell(new PdfPCell(new Phrase("TỔNG TIỀN PHẢI THANH TOÁN : ", fontContentBold)) { Border = iTextSharp.text.Rectangle.NO_BORDER, NoWrap = true });
+                table.AddCell(new PdfPCell(new Phrase("", fontContentBold)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                table.AddCell(new PdfPCell(new Phrase("", fontContentBold)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                table.AddCell(new PdfPCell(new Phrase(item.SubItems[3].Text + " VND", fontContentBold)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT, NoWrap = true });
+
+                doc.Add(table);
+
+                doc.Add(new Paragraph("\n"));
+
+                // Thêm mã QR vào PDF
+                iTextSharp.text.Image qrImage = iTextSharp.text.Image.GetInstance(qrImageBytes);
+                qrImage.Alignment = Element.ALIGN_CENTER;
+                qrImage.ScaleAbsolute(200, 200);
+                doc.Add(qrImage);
+
+                doc.Add(new Paragraph("\n"));
+
+                p = new Paragraph("Mọi thắc mắc xin vui lòng liên hệ với nhân viên cửa hàng hoặc Hotline: 0901010109", fontContentNomal);
+                p.Alignment = Element.ALIGN_CENTER;
+                doc.Add(p);
+
+                doc.Add(new Paragraph("\n"));
+
+                p = new Paragraph("Xin cảm ơn quý khách!!!", fontContentItalic);
+                p.Alignment = Element.ALIGN_CENTER;
+                doc.Add(p);
+
+                // Đóng document
+                doc.Close();
+
+                MessageBox.Show("Xuất hóa đơn thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Xuất hóa đơn không thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

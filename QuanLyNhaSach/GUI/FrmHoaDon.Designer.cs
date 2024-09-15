@@ -54,6 +54,7 @@
             this.btnSaveCTHD = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btnSaveHD = new System.Windows.Forms.Button();
+            this.btnXuatHD = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -102,6 +103,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnXuatHD);
             this.panel2.Controls.Add(this.btnConfirm);
             this.panel2.Controls.Add(this.btnDeleteHD);
             this.panel2.Controls.Add(this.dtpNgayLap);
@@ -120,9 +122,9 @@
             // btnConfirm
             // 
             this.btnConfirm.Enabled = false;
-            this.btnConfirm.Location = new System.Drawing.Point(515, 291);
+            this.btnConfirm.Location = new System.Drawing.Point(474, 318);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(136, 45);
+            this.btnConfirm.Size = new System.Drawing.Size(164, 45);
             this.btnConfirm.TabIndex = 6;
             this.btnConfirm.Text = "Xác nhận";
             this.btnConfirm.UseVisualStyleBackColor = true;
@@ -131,11 +133,11 @@
             // btnDeleteHD
             // 
             this.btnDeleteHD.Enabled = false;
-            this.btnDeleteHD.Location = new System.Drawing.Point(515, 15);
+            this.btnDeleteHD.Location = new System.Drawing.Point(474, 15);
             this.btnDeleteHD.Name = "btnDeleteHD";
-            this.btnDeleteHD.Size = new System.Drawing.Size(136, 45);
+            this.btnDeleteHD.Size = new System.Drawing.Size(164, 45);
             this.btnDeleteHD.TabIndex = 3;
-            this.btnDeleteHD.Text = "Xóa";
+            this.btnDeleteHD.Text = "Xóa hóa đơn";
             this.btnDeleteHD.UseVisualStyleBackColor = true;
             this.btnDeleteHD.Click += new System.EventHandler(this.btnXoaHD_Click);
             // 
@@ -143,7 +145,7 @@
             // 
             this.dtpNgayLap.Enabled = false;
             this.dtpNgayLap.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpNgayLap.Location = new System.Drawing.Point(277, 225);
+            this.dtpNgayLap.Location = new System.Drawing.Point(267, 228);
             this.dtpNgayLap.Name = "dtpNgayLap";
             this.dtpNgayLap.Size = new System.Drawing.Size(288, 30);
             this.dtpNgayLap.TabIndex = 7;
@@ -151,7 +153,7 @@
             // txbTenKH
             // 
             this.txbTenKH.Enabled = false;
-            this.txbTenKH.Location = new System.Drawing.Point(277, 171);
+            this.txbTenKH.Location = new System.Drawing.Point(267, 174);
             this.txbTenKH.Name = "txbTenKH";
             this.txbTenKH.Size = new System.Drawing.Size(288, 30);
             this.txbTenKH.TabIndex = 5;
@@ -159,7 +161,7 @@
             // txbMaHD
             // 
             this.txbMaHD.Enabled = false;
-            this.txbMaHD.Location = new System.Drawing.Point(277, 114);
+            this.txbMaHD.Location = new System.Drawing.Point(267, 117);
             this.txbMaHD.Name = "txbMaHD";
             this.txbMaHD.Size = new System.Drawing.Size(288, 30);
             this.txbMaHD.TabIndex = 4;
@@ -167,7 +169,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(88, 231);
+            this.label6.Location = new System.Drawing.Point(78, 234);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(106, 22);
             this.label6.TabIndex = 5;
@@ -175,9 +177,9 @@
             // 
             // btnCreateHD
             // 
-            this.btnCreateHD.Location = new System.Drawing.Point(22, 15);
+            this.btnCreateHD.Location = new System.Drawing.Point(22, 318);
             this.btnCreateHD.Name = "btnCreateHD";
-            this.btnCreateHD.Size = new System.Drawing.Size(187, 45);
+            this.btnCreateHD.Size = new System.Drawing.Size(200, 45);
             this.btnCreateHD.TabIndex = 1;
             this.btnCreateHD.Text = "Lập hóa đơn mới";
             this.btnCreateHD.UseVisualStyleBackColor = true;
@@ -186,7 +188,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(88, 174);
+            this.label5.Location = new System.Drawing.Point(78, 177);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(183, 22);
             this.label5.TabIndex = 5;
@@ -195,9 +197,9 @@
             // btnCTHD
             // 
             this.btnCTHD.Enabled = false;
-            this.btnCTHD.Location = new System.Drawing.Point(277, 15);
+            this.btnCTHD.Location = new System.Drawing.Point(248, 15);
             this.btnCTHD.Name = "btnCTHD";
-            this.btnCTHD.Size = new System.Drawing.Size(187, 45);
+            this.btnCTHD.Size = new System.Drawing.Size(164, 45);
             this.btnCTHD.TabIndex = 2;
             this.btnCTHD.Text = "Chi tiết hóa đơn";
             this.btnCTHD.UseVisualStyleBackColor = true;
@@ -206,7 +208,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(88, 117);
+            this.label4.Location = new System.Drawing.Point(78, 120);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(134, 22);
             this.label4.TabIndex = 5;
@@ -321,6 +323,17 @@
             this.btnSaveHD.UseVisualStyleBackColor = true;
             this.btnSaveHD.Click += new System.EventHandler(this.btnSaveHD_Click);
             // 
+            // btnXuatHD
+            // 
+            this.btnXuatHD.Enabled = false;
+            this.btnXuatHD.Location = new System.Drawing.Point(22, 15);
+            this.btnXuatHD.Name = "btnXuatHD";
+            this.btnXuatHD.Size = new System.Drawing.Size(164, 45);
+            this.btnXuatHD.TabIndex = 6;
+            this.btnXuatHD.Text = "Xuất hóa đơn";
+            this.btnXuatHD.UseVisualStyleBackColor = true;
+            this.btnXuatHD.Click += new System.EventHandler(this.btnXuatHD_Click);
+            // 
             // FrmHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
@@ -385,5 +398,6 @@
         private System.Windows.Forms.ListView lsvChiTietHoaDon;
         private System.Windows.Forms.Button btnDeleteHD;
         private System.Windows.Forms.Button btnConfirm;
+        private System.Windows.Forms.Button btnXuatHD;
     }
 }
