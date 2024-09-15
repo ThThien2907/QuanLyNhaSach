@@ -38,6 +38,9 @@ namespace QuanLyNhaSach
             int i = 0;
             foreach (DataRow row in dt.Rows)
             {
+                //Bỏ qua Loại sách mặc định MANLOAISACH == "LS000"
+                if (row["MALOAISACH"].ToString().Trim() == "LS000".Trim()) continue;
+
                 this.lsvLS.Items.Add(row["MALOAISACH"].ToString());
                 this.lsvLS.Items[i].SubItems.Add(row["TENLOAISACH"].ToString());
                 i++;

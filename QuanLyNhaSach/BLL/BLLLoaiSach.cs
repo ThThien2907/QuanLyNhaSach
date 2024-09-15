@@ -46,7 +46,11 @@ namespace QuanLyNhaSach.BLL
 
         public bool DeleteLoaiSach(LoaiSach ls)
         {
-            string query = $"delete from LOAISACH where MALOAISACH = '{ls.MALOAISACH}'";
+            //Update LoaiSach = Default
+            string query = $"update SACH SET MALOAISACH = 'LS000' where MALOAISACH = '{ls.MALOAISACH}'";
+            DAL.RunQuery(query);
+
+            query = $"delete from LOAISACH where MALOAISACH = '{ls.MALOAISACH}'";
             if (DAL.RunQuery(query))
             {
                 MessageBox.Show("Xóa thành công !!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

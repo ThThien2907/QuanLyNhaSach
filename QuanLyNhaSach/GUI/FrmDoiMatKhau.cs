@@ -24,18 +24,23 @@ namespace QuanLyNhaSach.GUI
         {
             if (txtNewPW.Text != string.Empty && txtPassWord.Text != string.Empty && txtReNewPW.Text != string.Empty)
             {
-                if (txtNewPW.Text == txtReNewPW.Text)
+                if (BLLTaiKhoan.CheckUser(txtUserName.Text, txtPassWord.Text))
                 {
-                    if (!BLLTaiKhoan.DoiMatKhau(txtUserName.Text, txtNewPW.Text)) 
-                        MessageBox.Show("Đổi mật khẩu không thành công !!", "Thông báo", MessageBoxButtons.OK);
-                    else
+                    if (txtNewPW.Text == txtReNewPW.Text)
                     {
-                        MessageBox.Show("Đổi mật khẩu thành công !!", "Thông báo", MessageBoxButtons.OK);
-                        this.Close();
+                        if (!BLLTaiKhoan.DoiMatKhau(txtUserName.Text, txtNewPW.Text))
+                            MessageBox.Show("Đổi mật khẩu không thành công !!", "Thông báo", MessageBoxButtons.OK);
+                        else
+                        {
+                            MessageBox.Show("Đổi mật khẩu thành công !!", "Thông báo", MessageBoxButtons.OK);
+                            this.Close();
+                        }
                     }
+                    else MessageBox.Show("Mật khẩu không trùng khớp !!", "Thông báo", MessageBoxButtons.OK);
                 }
-                else MessageBox.Show("Mật khẩu không trùng khớp !!", "Thông báo", MessageBoxButtons.OK);
+                else MessageBox.Show("Sai mật khẩu, Vui lòng nhập lại !!", "Thông báo", MessageBoxButtons.OK);
             }
+            else MessageBox.Show("Vui lòng điền đầy đủ thông tin !!");
         }
 
         private void FrmDoiMatKhau_Load(object sender, EventArgs e)
