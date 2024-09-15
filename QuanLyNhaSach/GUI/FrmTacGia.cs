@@ -42,6 +42,9 @@ namespace QuanLyNhaSach
             int i = 0;
             foreach (DataRow row in dt.Rows)
             {
+                //Bỏ qua Tác giả mặc định MATG == "TG000"
+                if (row["MATG"].ToString().Trim() == "TG000".Trim()) continue;
+
                 this.lsvTG.Items.Add(row["MATG"].ToString());
                 this.lsvTG.Items[i].SubItems.Add(row["TENTG"].ToString());
                 i++;

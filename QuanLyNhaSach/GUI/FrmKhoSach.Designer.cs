@@ -96,6 +96,7 @@
             // 
             // cboNXB
             // 
+            this.cboNXB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboNXB.FormattingEnabled = true;
             this.cboNXB.Location = new System.Drawing.Point(202, 156);
             this.cboNXB.Name = "cboNXB";
@@ -104,6 +105,7 @@
             // 
             // cboLS
             // 
+            this.cboLS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLS.FormattingEnabled = true;
             this.cboLS.Location = new System.Drawing.Point(202, 120);
             this.cboLS.Name = "cboLS";
@@ -112,6 +114,7 @@
             // 
             // cboTG
             // 
+            this.cboTG.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTG.FormattingEnabled = true;
             this.cboTG.Location = new System.Drawing.Point(202, 84);
             this.cboTG.Name = "cboTG";
